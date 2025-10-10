@@ -12,6 +12,10 @@ public class MotorCycleCusomization : ScriptableObject
     public int MaxPower;
     public int BrakeTorque;
 
+    [Header("Downforce")]
+    public int RearWingGrip;
+    public int FrontWingletGrip;
+
 
     [Header("DriveType")]
 

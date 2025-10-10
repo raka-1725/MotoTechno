@@ -34,6 +34,9 @@ public class MotorCycleController : MonoBehaviour
     [SerializeField] private bool bOverTakePower;
     private bool bIsBraking;
 
+    private int mExtraGripR;
+    private int mExtraGripF;
+
     [Header("Battery")]
     [SerializeField] private float mBattery;
     private float mEnergyUseIndex;
@@ -102,6 +105,8 @@ public class MotorCycleController : MonoBehaviour
         mEnergyUseIndex = mMotoSpecCustom.EnergyUseIndex;
         mRegenStrength = mMotoSpecCustom.RegenStrength;
         mOverTakePowerIndex = mMotoSpecCustom.OverTakeIndex;
+        mExtraGripF = mMotoSpecCustom.FrontWingletGrip;
+        mExtraGripR = mMotoSpecCustom.RearWingGrip;
         CheckVehicleStatsSet();
 
         //UI
@@ -134,6 +139,7 @@ public class MotorCycleController : MonoBehaviour
         if (mMotoSpecCustom.RearWing == true)
         {
             mRearWing.gameObject.SetActive(true);
+            //mWColliderRear.forwardFriction.extremumSlip =+ mExtraGripR;
         }
         else
         {
@@ -159,6 +165,7 @@ public class MotorCycleController : MonoBehaviour
         {
             mBodyColorMaterial.color = mMotoSpecCustom.mDefaultBodyColor;
         }
+
     }
 
 
