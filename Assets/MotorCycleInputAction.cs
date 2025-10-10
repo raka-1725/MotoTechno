@@ -108,6 +108,15 @@ public partial class @MotorCycleInputAction: IInputActionCollection2, IDisposabl
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MotoOverTake"",
+                    ""type"": ""Button"",
+                    ""id"": ""6f349739-b108-4982-90e1-e6ab4e5befcb"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -176,6 +185,17 @@ public partial class @MotorCycleInputAction: IInputActionCollection2, IDisposabl
                     ""action"": ""MotoRegen"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""460867d7-7b11-44c0-8551-f169758c7dc9"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MotoOverTake"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -214,6 +234,7 @@ public partial class @MotorCycleInputAction: IInputActionCollection2, IDisposabl
         m_MotorCycle = asset.FindActionMap("MotorCycle", throwIfNotFound: true);
         m_MotorCycle_MotoInput = m_MotorCycle.FindAction("MotoInput", throwIfNotFound: true);
         m_MotorCycle_MotoRegen = m_MotorCycle.FindAction("MotoRegen", throwIfNotFound: true);
+        m_MotorCycle_MotoOverTake = m_MotorCycle.FindAction("MotoOverTake", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Newaction = m_UI.FindAction("New action", throwIfNotFound: true);
@@ -300,6 +321,7 @@ public partial class @MotorCycleInputAction: IInputActionCollection2, IDisposabl
     private List<IMotorCycleActions> m_MotorCycleActionsCallbackInterfaces = new List<IMotorCycleActions>();
     private readonly InputAction m_MotorCycle_MotoInput;
     private readonly InputAction m_MotorCycle_MotoRegen;
+    private readonly InputAction m_MotorCycle_MotoOverTake;
     /// <summary>
     /// Provides access to input actions defined in input action map "MotorCycle".
     /// </summary>
@@ -319,6 +341,10 @@ public partial class @MotorCycleInputAction: IInputActionCollection2, IDisposabl
         /// Provides access to the underlying input action "MotorCycle/MotoRegen".
         /// </summary>
         public InputAction @MotoRegen => m_Wrapper.m_MotorCycle_MotoRegen;
+        /// <summary>
+        /// Provides access to the underlying input action "MotorCycle/MotoOverTake".
+        /// </summary>
+        public InputAction @MotoOverTake => m_Wrapper.m_MotorCycle_MotoOverTake;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -351,6 +377,9 @@ public partial class @MotorCycleInputAction: IInputActionCollection2, IDisposabl
             @MotoRegen.started += instance.OnMotoRegen;
             @MotoRegen.performed += instance.OnMotoRegen;
             @MotoRegen.canceled += instance.OnMotoRegen;
+            @MotoOverTake.started += instance.OnMotoOverTake;
+            @MotoOverTake.performed += instance.OnMotoOverTake;
+            @MotoOverTake.canceled += instance.OnMotoOverTake;
         }
 
         /// <summary>
@@ -368,6 +397,9 @@ public partial class @MotorCycleInputAction: IInputActionCollection2, IDisposabl
             @MotoRegen.started -= instance.OnMotoRegen;
             @MotoRegen.performed -= instance.OnMotoRegen;
             @MotoRegen.canceled -= instance.OnMotoRegen;
+            @MotoOverTake.started -= instance.OnMotoOverTake;
+            @MotoOverTake.performed -= instance.OnMotoOverTake;
+            @MotoOverTake.canceled -= instance.OnMotoOverTake;
         }
 
         /// <summary>
@@ -518,6 +550,13 @@ public partial class @MotorCycleInputAction: IInputActionCollection2, IDisposabl
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnMotoRegen(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "MotoOverTake" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMotoOverTake(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

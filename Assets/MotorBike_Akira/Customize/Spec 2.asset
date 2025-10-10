@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25d191969f8b4f8458634b0f07beaddf, type: 3}
   m_Name: Spec 2
   m_EditorClassIdentifier: 
-  MaxPower: 10000
+  MaxPower: 8000
   BrakeTorque: 3000
   mDriveTypes: 1
   BatteryCapacity: 100
-  EnergyUseIndex: 80
-  RegenStrength: 5
+  EnergyUseIndex: 1
+  RegenStrength: 50
+  OverTakeIndex: 1.2
   RearWing: 0
   FrontWinglet: 0
   DefaultBodyColor: 0

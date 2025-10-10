@@ -17,7 +17,8 @@ MonoBehaviour:
   mDriveTypes: 1
   BatteryCapacity: 100
   EnergyUseIndex: 1
-  RegenStrength: 20
+  RegenStrength: 50
+  OverTakeIndex: 1.2
   RearWing: 0
   FrontWinglet: 0
   DefaultBodyColor: 1

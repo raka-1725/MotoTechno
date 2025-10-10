@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 
@@ -24,6 +25,7 @@ public class MotorCycleCusomization : ScriptableObject
     public float BatteryCapacity;
     public float EnergyUseIndex;
     public float RegenStrength;
+    public float OverTakeIndex;
 
     [Header("CustomizeVechicle")]
     public bool RearWing;

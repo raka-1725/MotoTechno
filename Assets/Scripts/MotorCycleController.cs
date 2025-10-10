@@ -31,12 +31,14 @@ public class MotorCycleController : MonoBehaviour
     private float mBrakeTorque;
     [SerializeField] private float mMaxSteerAngle;
     [SerializeField] private bool bRegenBrake;
+    [SerializeField] private bool bOverTakePower;
     private bool bIsBraking;
 
     [Header("Battery")]
     [SerializeField] private float mBattery;
     private float mEnergyUseIndex;
     private float mRegenStrength;
+    private float mOverTakePowerIndex;
 
     [Header("BrakeLight")]
     [SerializeField] private GameObject mBrakeLight_R;
@@ -81,6 +83,8 @@ public class MotorCycleController : MonoBehaviour
         mInputAction.MotorCycle.MotoInput.canceled += HandleMoveInput;
         mInputAction.MotorCycle.MotoRegen.performed += OnRegenInputPressed;
         mInputAction.MotorCycle.MotoRegen.canceled += OnRegenInputRelease;
+        mInputAction.MotorCycle.MotoOverTake.performed += OnOverTakeInput;
+        mInputAction.MotorCycle.MotoOverTake.canceled += OnOverTakeInputRelease;
         rb = GetComponent<Rigidbody>();
 
         //visual
@@ -97,7 +101,8 @@ public class MotorCycleController : MonoBehaviour
         mBattery = mMotoSpecCustom.BatteryCapacity;
         mEnergyUseIndex = mMotoSpecCustom.EnergyUseIndex;
         mRegenStrength = mMotoSpecCustom.RegenStrength;
-        ChechVehicleStatsSet();
+        mOverTakePowerIndex = mMotoSpecCustom.OverTakeIndex;
+        CheckVehicleStatsSet();
 
         //UI
         mMotoUI = GetComponent<MotorCycleUI>();
@@ -109,7 +114,6 @@ public class MotorCycleController : MonoBehaviour
     {
         GetSpeed();
         SkidMark();
-        mMotoUI.Speed(Speed);
         
     }
 
@@ -120,7 +124,12 @@ public class MotorCycleController : MonoBehaviour
         RotateTire();
         BodyTilt();
     }
-    private void ChechVehicleStatsSet()
+    private void LateUpdate()
+    {
+        mMotoUI.Speed(Speed);
+        mMotoUI.BatteryPercentage(mBattery);
+    }
+    private void CheckVehicleStatsSet()
     {
         if (mMotoSpecCustom.RearWing == true)
         {
@@ -137,7 +146,7 @@ public class MotorCycleController : MonoBehaviour
         }
         else
         {
-            mFrontWinglet.gameObject.SetActive(true);
+            mFrontWinglet.gameObject.SetActive(false);
         }
 
         //bodycolor
@@ -166,7 +175,14 @@ public class MotorCycleController : MonoBehaviour
     {
         bRegenBrake = false;
     }
-
+    private void OnOverTakeInput(InputAction.CallbackContext context) 
+    {
+        bOverTakePower = true;
+    }
+    private void OnOverTakeInputRelease(InputAction.CallbackContext context) 
+    {
+        bOverTakePower = false;
+    }
     private void HandleMotor()
     {
         mBrakeAccel = (mMoveInput.y);
@@ -174,33 +190,20 @@ public class MotorCycleController : MonoBehaviour
         if (mBrakeAccel < 0) { bIsBraking = true; }
         float speedfactor = Mathf.InverseLerp(0, 200, Speed);
         float motorTorque = Mathf.Lerp(mMotorPower, 0, speedfactor);
-        //Energy system
-        mBattery = Mathf.Clamp(mBattery, 0f, 100f); 
-        float energyuse = mBrakeAccel * mEnergyUseIndex * speedfactor * Time.deltaTime; 
-        mBattery -= energyuse;
-        if (bRegenBrake && (Speed > 5f || Speed < 5f))  
+        if (bOverTakePower) 
         {
-            mBrakeAccel = -0.2f;
-            float regen = mRegenStrength * speedfactor * Time.deltaTime; 
-            mBattery += regen; 
-            //Debug.Log($"Regen {regen}");
-            if (bRegenBrake && Speed < 5f) 
-            {
-                mBrakeAccel = 0;
-            }
+            motorTorque = motorTorque * OverTakePower();
         }
-        
+        //Energy system
+        EnergyUse(speedfactor);
+
         Debug.Log($"MotorInput : {-(mBrakeAccel * motorTorque)}, Brake : {mCurrentBrakeForce}");
 
-        if (!bIsBraking && Speed >0)
+        if (!bIsBraking && Speed > 0)
         {
-            //FIX THIS
-            //CUT MOTOR WHEN SPD IS NEGATIVE AND BRAKING
-
-
             //mBrakeAccel = Mathf.Abs(mBrakeAccel);
         }
-        if (mBattery <= 0) 
+        if (mBattery <= 0)
         {
             mBrakeAccel = Mathf.Clamp(mBrakeAccel, -2, 0);
             mWColliderFront.motorTorque = 0f;
@@ -229,8 +232,34 @@ public class MotorCycleController : MonoBehaviour
 
         BrakeLight();
         ApplyBraking();
-        mMotoUI.BatteryPercentage(mBattery);
         //Debug.Log($"MotorInput{ mBrakeAccel}");
+    }
+
+    private void EnergyUse(float speedfactor)
+    {
+        mBattery = Mathf.Clamp(mBattery, 0f, 100f);
+        float energyUseMultiplier = OverTakePower();
+        float energyuse = Mathf.Max(0f, mBrakeAccel) * mEnergyUseIndex * speedfactor * Time.deltaTime;
+        
+        mBattery -= energyuse;
+        if (bRegenBrake && (Speed > 5f || Speed < 5f))
+        {
+            mBrakeAccel = -0.2f;
+            float regen = mRegenStrength * speedfactor * Time.deltaTime;
+            mBattery += regen;
+            //Debug.Log($"Regen {regen}");
+            if (bRegenBrake && Speed < 5f)
+            {
+                mBrakeAccel = 0;
+            }
+        }
+    }
+
+    private float OverTakePower() 
+    {
+        if (!bOverTakePower || bRegenBrake || bIsBraking) return mEnergyUseIndex;
+        float overtakePower = mOverTakePowerIndex;
+        return overtakePower;
     }
 
     private void BrakeLight()
