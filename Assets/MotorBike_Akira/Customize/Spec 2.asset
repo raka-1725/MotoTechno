@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25d191969f8b4f8458634b0f07beaddf, type: 3}
+  m_Name: Spec 2
+  m_EditorClassIdentifier: 
+  MaxPower: 10000
+  BrakeTorque: 3000
+  mDriveTypes: 1
+  BatteryCapacity: 100
+  EnergyUseIndex: 80
+  RegenStrength: 5
+  RearWing: 0
+  FrontWinglet: 0
+  DefaultBodyColor: 0
+  mDefaultBodyColor: {r: 0.87058824, g: 0.101960786, b: 0.101960786, a: 0}
+  mCustomBodyColor: {r: 0.18039216, g: 0.53678346, b: 0.6901961, a: 0}

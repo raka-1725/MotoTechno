@@ -1,0 +1,126 @@
+{
+    "name": "MotorCycleInputAction",
+    "maps": [
+        {
+            "name": "MotorCycle",
+            "id": "cc597bf1-b4df-4465-8862-5ebb5062add2",
+            "actions": [
+                {
+                    "name": "MotoInput",
+                    "type": "Value",
+                    "id": "f8ed27cd-0eb1-49e7-9f6e-2b1ca41063a3",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "MotoRegen",
+                    "type": "Button",
+                    "id": "eee2eab9-95d7-4f64-8fa2-4cc7fdb21c84",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "Move",
+                    "id": "cc070d63-45cd-4d13-860e-6bb5c2a72799",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MotoInput",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "e295cbb4-7b09-4fe3-aa9f-2302a27130ef",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MotoInput",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "a03c921e-721f-4e94-8545-7b5b0d57d35b",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MotoInput",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "9702f5cc-c7d4-4a5b-8ac4-b267df78a27c",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MotoInput",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "5453b5dd-c00a-4491-a6d5-70d25a25f695",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MotoInput",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "9b8653a1-fd53-4043-b873-caa02bdeadb0",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MotoRegen",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "UI",
+            "id": "924b9e98-10e4-42a6-824a-fabd43f0af2f",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "abdf6e5d-dfef-41de-b72a-48d71619de7f",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "5f8b1e2a-4333-44ed-ab61-bcf58fd9fb18",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
