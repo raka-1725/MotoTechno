@@ -918,7 +918,7 @@ PrefabInstance:
       objectReference: {fileID: 1593008859}
     - target: {fileID: 5065916409023086038, guid: 35ad766ecf068bd408600c7b31d2909a, type: 3}
       propertyPath: mMaxSteerAngle
-      value: 45
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 5065916409023086038, guid: 35ad766ecf068bd408600c7b31d2909a, type: 3}
       propertyPath: mMotoSpecCustom

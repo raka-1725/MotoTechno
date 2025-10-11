@@ -202,7 +202,7 @@ public class MotorCycleController : MonoBehaviour
     private void HandleMotor()
     {
         mBrakeAccel = (mMoveInput.y);
-        if (mBrakeAccel > 0) { bIsBraking = false; }
+        if (mBrakeAccel >= 0) { bIsBraking = false; }
         if (mBrakeAccel < 0) { bIsBraking = true; }
         float speedfactor = Mathf.InverseLerp(0, 200, Speed);
         float motorTorque = Mathf.Lerp(mMotorPower, 0, speedfactor);
@@ -243,7 +243,6 @@ public class MotorCycleController : MonoBehaviour
         }
         if (Speed < 0) { motorTorque = 0; }
         //Debug.Log($"CurrentMotorPower {-(mBrakeAccel * motorTorque)}");
-        mCurrentBrakeForce = bIsBraking ? mBrakeTorque : 0;
 
 
         BrakeLight();
@@ -291,6 +290,7 @@ public class MotorCycleController : MonoBehaviour
 
     private void ApplyBraking() 
     {
+        mCurrentBrakeForce = bIsBraking ? mBrakeTorque : 0;
         mWColliderFront.brakeTorque = mCurrentBrakeForce;
         mWColliderRear.brakeTorque = mCurrentBrakeForce;
     }

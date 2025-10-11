@@ -134,9 +134,9 @@ WheelCollider:
   m_Mass: 80
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
-    m_ExtremumSlip: 1
-    m_ExtremumValue: 2.5
-    m_AsymptoteSlip: 2.5
+    m_ExtremumSlip: 0.8
+    m_ExtremumValue: 2
+    m_AsymptoteSlip: 1.5
     m_AsymptoteValue: 1
     m_Stiffness: 1
   m_SidewaysFriction:
@@ -181,8 +181,8 @@ Transform:
   m_GameObject: {fileID: 1771023478744438691}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.6078521, w: 0.79405034}
-  m_LocalPosition: {x: 0.043038502, y: 0.14519997, z: -0.0667027}
-  m_LocalScale: {x: 0.0026904468, y: 0.0026904468, z: 0.0030681854}
+  m_LocalPosition: {x: 0.0433, y: 0.1462, z: -0.0663}
+  m_LocalScale: {x: 0.0026904468, y: 0.0026904468, z: -0.0030681854}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6657698278022249834}
@@ -1070,8 +1070,8 @@ Transform:
   m_GameObject: {fileID: 5235929171641934517}
   serializedVersion: 2
   m_LocalRotation: {x: 0.60697424, y: -0.60697424, z: -0.36274275, w: 0.36274275}
-  m_LocalPosition: {x: 0.036690846, y: 0.14859995, z: -0.06359863}
-  m_LocalScale: {x: -0.77071595, y: -0.77071595, z: -0.77071595}
+  m_LocalPosition: {x: 0.036690846, y: 0.1486, z: -0.06359863}
+  m_LocalScale: {x: -1.781279, y: -1.781279, z: -1.781279}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 6657698278022249834}
@@ -1711,9 +1711,9 @@ WheelCollider:
   m_Mass: 80
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
-    m_ExtremumSlip: 1
-    m_ExtremumValue: 2.5
-    m_AsymptoteSlip: 2.5
+    m_ExtremumSlip: 0.8
+    m_ExtremumValue: 2
+    m_AsymptoteSlip: 1.5
     m_AsymptoteValue: 1
     m_Stiffness: 1
   m_SidewaysFriction:
@@ -1782,7 +1782,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4653034502700832062
 Transform:
   m_ObjectHideFlags: 0
@@ -1791,13 +1791,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6997043350961131939}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000000049913368, y: 0.99986523, z: 0.016419774, w: 7.9580797e-13}
-  m_LocalPosition: {x: -0, y: 0.1172, z: 0.0878}
+  m_LocalRotation: {x: 0.00000004986851, y: 0.99966216, z: -0.025992295, w: -0.0000000021155986}
+  m_LocalPosition: {x: -0.00000015743392, y: 0.12729998, z: 0.07369995}
   m_LocalScale: {x: 0.20000003, y: 0.19999999, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7527634456671760900}
-  m_LocalEulerAnglesHint: {x: -1.882, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 2.979, y: 180, z: 0}
 --- !u!20 &565416035380710066
 Camera:
   m_ObjectHideFlags: 0
@@ -1831,7 +1831,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 59.1
+  field of view: 59
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -2445,6 +2445,7 @@ MonoBehaviour:
   mMotoSpecCustom: {fileID: 11400000, guid: 1bff4cbeca02d5c4681ba4277de9bab8, type: 2}
   mMaxSteerAngle: 0
   bRegenBrake: 0
+  bOverTakePower: 0
   mBattery: 0
   mBrakeLight_R: {fileID: 3345637771655116342}
   mBrakeLight_L: {fileID: 2883986095970397586}
@@ -2459,7 +2460,7 @@ MonoBehaviour:
   mWColliderRear: {fileID: 3569206256689744479}
   Speed: 0
   rawSpeed: 0
-  mZtiltAngle: 5
+  mZtiltAngle: 20
   bSkidOn: 1
   mSkidWidth: 0.05
   mMinSkidSpeed: 15
