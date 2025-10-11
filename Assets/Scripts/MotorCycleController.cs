@@ -34,8 +34,8 @@ public class MotorCycleController : MonoBehaviour
     [SerializeField] private bool bOverTakePower;
     private bool bIsBraking;
 
-    private int mExtraGripR;
-    private int mExtraGripF;
+    private float mExtraGripR;
+    private float mExtraGripF;
 
     [Header("Battery")]
     [SerializeField] private float mBattery;
@@ -105,8 +105,8 @@ public class MotorCycleController : MonoBehaviour
         mEnergyUseIndex = mMotoSpecCustom.EnergyUseIndex;
         mRegenStrength = mMotoSpecCustom.RegenStrength;
         mOverTakePowerIndex = mMotoSpecCustom.OverTakeIndex;
-        mExtraGripF = mMotoSpecCustom.FrontWingletGrip;
-        mExtraGripR = mMotoSpecCustom.RearWingGrip;
+        mExtraGripF = mMotoSpecCustom.FrontWingletGripMultiplier ;
+        mExtraGripR = mMotoSpecCustom.RearWingGripMultiplier;
         CheckVehicleStatsSet();
 
         //UI
@@ -136,10 +136,14 @@ public class MotorCycleController : MonoBehaviour
     }
     private void CheckVehicleStatsSet()
     {
+        WheelFrictionCurve frontWheelFriction = mWColliderFront.forwardFriction;
+        WheelFrictionCurve rearWheelFriction = mWColliderRear.forwardFriction;
+
         if (mMotoSpecCustom.RearWing == true)
         {
             mRearWing.gameObject.SetActive(true);
-            //mWColliderRear.forwardFriction.extremumSlip =+ mExtraGripR;
+            rearWheelFriction.extremumSlip *= mExtraGripR;
+            rearWheelFriction.asymptoteValue *= mExtraGripR;
         }
         else
         {
@@ -149,11 +153,16 @@ public class MotorCycleController : MonoBehaviour
         if (mMotoSpecCustom.FrontWinglet == true)
         {
             mFrontWinglet.gameObject.SetActive(true);
+            frontWheelFriction.extremumSlip *= mExtraGripF;
+            frontWheelFriction.asymptoteValue *= mExtraGripF;
         }
         else
         {
             mFrontWinglet.gameObject.SetActive(false);
         }
+
+        mWColliderFront.forwardFriction = frontWheelFriction;
+        mWColliderRear.forwardFriction = rearWheelFriction; 
 
         //bodycolor
 

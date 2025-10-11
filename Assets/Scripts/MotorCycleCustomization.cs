@@ -13,8 +13,8 @@ public class MotorCycleCusomization : ScriptableObject
     public int BrakeTorque;
 
     [Header("Downforce")]
-    public int RearWingGrip;
-    public int FrontWingletGrip;
+    public float RearWingGripMultiplier;
+    public float FrontWingletGripMultiplier;
 
 
     [Header("DriveType")]
