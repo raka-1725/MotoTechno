@@ -1,5 +1,11 @@
 # MotoTechno
 
+* Engine Configuration
+
+|Engine|Version|
+|------|-------|
+|Unity| 6000.1.2f1|
+
 
 **Basic Gameplay** 
 The player drives/rides motorcycle with either First Person View or Third Person View, and race against other NPCs. The player will be awarded to point to customize their motorcycle, and they can change the stats of the vehicle as well.
@@ -12,3 +18,5 @@ MotorcycleCustomization - "ScriptableObject" - A script that contains various st
 
 **New Features to Implement**
 Game start/stop feature, race start feature, more data for Machine Learning Agent to generate better NPC AI, store system to customize motorcycle.
+
+
