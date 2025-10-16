@@ -2,49 +2,58 @@
     "MotorcycleAI": {
         "checkpoints": [
             {
-                "steps": 499976,
-                "file_path": "results\\MotorcycleRun01\\MotorcycleAI\\MotorcycleAI-499976.onnx",
-                "reward": 1.078262087213807,
-                "creation_time": 1760552077.418923,
+                "steps": 3499971,
+                "file_path": "results\\MotorcycleRun01\\MotorcycleAI\\MotorcycleAI-3499971.onnx",
+                "reward": null,
+                "creation_time": 1760633195.0696533,
                 "auxillary_file_paths": [
-                    "results\\MotorcycleRun01\\MotorcycleAI\\MotorcycleAI-499976.pt"
+                    "results\\MotorcycleRun01\\MotorcycleAI\\MotorcycleAI-3499971.pt"
                 ]
             },
             {
-                "steps": 999994,
-                "file_path": "results\\MotorcycleRun01\\MotorcycleAI\\MotorcycleAI-999994.onnx",
-                "reward": 2.792984915050593,
-                "creation_time": 1760553404.6523209,
+                "steps": 3999983,
+                "file_path": "results\\MotorcycleRun01\\MotorcycleAI\\MotorcycleAI-3999983.onnx",
+                "reward": 107.35470832139254,
+                "creation_time": 1760633501.6802628,
                 "auxillary_file_paths": [
-                    "results\\MotorcycleRun01\\MotorcycleAI\\MotorcycleAI-999994.pt"
+                    "results\\MotorcycleRun01\\MotorcycleAI\\MotorcycleAI-3999983.pt"
                 ]
             },
             {
-                "steps": 1499995,
-                "file_path": "results\\MotorcycleRun01\\MotorcycleAI\\MotorcycleAI-1499995.onnx",
-                "reward": 4.405211769044399,
-                "creation_time": 1760554675.8522472,
+                "steps": 4499981,
+                "file_path": "results\\MotorcycleRun01\\MotorcycleAI\\MotorcycleAI-4499981.onnx",
+                "reward": 136.31371814012527,
+                "creation_time": 1760633808.4500043,
                 "auxillary_file_paths": [
-                    "results\\MotorcycleRun01\\MotorcycleAI\\MotorcycleAI-1499995.pt"
+                    "results\\MotorcycleRun01\\MotorcycleAI\\MotorcycleAI-4499981.pt"
                 ]
             },
             {
-                "steps": 1617213,
-                "file_path": "results\\MotorcycleRun01\\MotorcycleAI\\MotorcycleAI-1617213.onnx",
-                "reward": 5.570375779909747,
-                "creation_time": 1760555094.8472617,
+                "steps": 4999984,
+                "file_path": "results\\MotorcycleRun01\\MotorcycleAI\\MotorcycleAI-4999984.onnx",
+                "reward": null,
+                "creation_time": 1760634117.9740064,
                 "auxillary_file_paths": [
-                    "results\\MotorcycleRun01\\MotorcycleAI\\MotorcycleAI-1617213.pt"
+                    "results\\MotorcycleRun01\\MotorcycleAI\\MotorcycleAI-4999984.pt"
+                ]
+            },
+            {
+                "steps": 5000016,
+                "file_path": "results\\MotorcycleRun01\\MotorcycleAI\\MotorcycleAI-5000016.onnx",
+                "reward": null,
+                "creation_time": 1760634118.0060203,
+                "auxillary_file_paths": [
+                    "results\\MotorcycleRun01\\MotorcycleAI\\MotorcycleAI-5000016.pt"
                 ]
             }
         ],
         "final_checkpoint": {
-            "steps": 1617213,
+            "steps": 5000016,
             "file_path": "results\\MotorcycleRun01\\MotorcycleAI.onnx",
-            "reward": 5.570375779909747,
-            "creation_time": 1760555094.8472617,
+            "reward": null,
+            "creation_time": 1760634118.0060203,
             "auxillary_file_paths": [
-                "results\\MotorcycleRun01\\MotorcycleAI\\MotorcycleAI-1617213.pt"
+                "results\\MotorcycleRun01\\MotorcycleAI\\MotorcycleAI-5000016.pt"
             ]
         }
     },

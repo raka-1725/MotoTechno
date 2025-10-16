@@ -1,7 +1,7 @@
 behaviors:
   MotorcycleAI:
     trainer_type: ppo
-    max_steps: 5000000
+    max_steps: 15000000
     time_horizon: 32
     summary_freq: 10000
     hyperparameters:
