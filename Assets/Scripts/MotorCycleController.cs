@@ -213,7 +213,7 @@ public class MotorCycleController : MonoBehaviour
         //Energy system
         EnergyUse(speedfactor);
 
-        Debug.Log($"MotorInput : {-(mBrakeAccel * motorTorque)}, Brake : {mCurrentBrakeForce}");
+        ///Debug.Log($"MotorInput : {-(mBrakeAccel * motorTorque)}, Brake : {mCurrentBrakeForce}");
 
         if (!bIsBraking && Speed > 0)
         {

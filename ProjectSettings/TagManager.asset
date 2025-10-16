@@ -6,6 +6,11 @@ TagManager:
   tags:
   - Mirror
   - PlayerMotorCycle
+  - Checkpoint
+  - Walls
+  - Grass
+  - DirtyTarmac
+  - Gravel
   layers:
   - Default
   - TransparentFX

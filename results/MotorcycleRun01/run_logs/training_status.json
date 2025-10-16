@@ -1,0 +1,56 @@
+{
+    "MotorcycleAI": {
+        "checkpoints": [
+            {
+                "steps": 499976,
+                "file_path": "results\\MotorcycleRun01\\MotorcycleAI\\MotorcycleAI-499976.onnx",
+                "reward": 1.078262087213807,
+                "creation_time": 1760552077.418923,
+                "auxillary_file_paths": [
+                    "results\\MotorcycleRun01\\MotorcycleAI\\MotorcycleAI-499976.pt"
+                ]
+            },
+            {
+                "steps": 999994,
+                "file_path": "results\\MotorcycleRun01\\MotorcycleAI\\MotorcycleAI-999994.onnx",
+                "reward": 2.792984915050593,
+                "creation_time": 1760553404.6523209,
+                "auxillary_file_paths": [
+                    "results\\MotorcycleRun01\\MotorcycleAI\\MotorcycleAI-999994.pt"
+                ]
+            },
+            {
+                "steps": 1499995,
+                "file_path": "results\\MotorcycleRun01\\MotorcycleAI\\MotorcycleAI-1499995.onnx",
+                "reward": 4.405211769044399,
+                "creation_time": 1760554675.8522472,
+                "auxillary_file_paths": [
+                    "results\\MotorcycleRun01\\MotorcycleAI\\MotorcycleAI-1499995.pt"
+                ]
+            },
+            {
+                "steps": 1617213,
+                "file_path": "results\\MotorcycleRun01\\MotorcycleAI\\MotorcycleAI-1617213.onnx",
+                "reward": 5.570375779909747,
+                "creation_time": 1760555094.8472617,
+                "auxillary_file_paths": [
+                    "results\\MotorcycleRun01\\MotorcycleAI\\MotorcycleAI-1617213.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1617213,
+            "file_path": "results\\MotorcycleRun01\\MotorcycleAI.onnx",
+            "reward": 5.570375779909747,
+            "creation_time": 1760555094.8472617,
+            "auxillary_file_paths": [
+                "results\\MotorcycleRun01\\MotorcycleAI\\MotorcycleAI-1617213.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.8.0+cpu"
+    }
+}
