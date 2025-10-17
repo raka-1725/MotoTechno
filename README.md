@@ -10,15 +10,15 @@
 
 ---
 
-- [Overview](#Overview)
-- [Feature](#Feature)
-- [Core Classes](#Core-Classes)
-- [Features To Implement](#Features-To-Implement)
-- [Issues/Bugs](#Issues/Bugs)
+- [Overview](#overview)
+- [Feature](#features)
+- [Core Classes](#core-classes)
+- [Features To Implement](#features-to-implement)
+- [Issues/Bugs](#issuesbugs)
 
 ---
 
-# Basic Gameplay 
+# Overview
 The player drives/rides motorcycle with either First Person View or Third Person View, and race against other NPCs. The player will be awarded to point to customize their motorcycle, and they can change the stats of the vehicle as well.
 NPC's are still in progress of development, therefore there is only solo mode as of now.
 
