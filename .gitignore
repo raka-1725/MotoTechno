@@ -100,12 +100,12 @@ InitTestScene*.unity*
 
 
 # Output Artifacts
-/results
+#/results
 # Output Builds
 /Builds
 
 # Training environments
-/envs
+#/envs
 
 # Environemnt logfile
 *Project.log

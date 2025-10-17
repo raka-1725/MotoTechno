@@ -1,0 +1,56 @@
+{
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.9.0+cpu"
+    },
+    "MotorcycleAI": {
+        "checkpoints": [
+            {
+                "steps": 13999989,
+                "file_path": "results\\MotorcycleRun02\\MotorcycleAI\\MotorcycleAI-13999989.onnx",
+                "reward": null,
+                "creation_time": 1760657169.8313372,
+                "auxillary_file_paths": [
+                    "results\\MotorcycleRun02\\MotorcycleAI\\MotorcycleAI-13999989.pt"
+                ]
+            },
+            {
+                "steps": 14499990,
+                "file_path": "results\\MotorcycleRun02\\MotorcycleAI\\MotorcycleAI-14499990.onnx",
+                "reward": 132.10520124435425,
+                "creation_time": 1760657825.6509132,
+                "auxillary_file_paths": [
+                    "results\\MotorcycleRun02\\MotorcycleAI\\MotorcycleAI-14499990.pt"
+                ]
+            },
+            {
+                "steps": 14999991,
+                "file_path": "results\\MotorcycleRun02\\MotorcycleAI\\MotorcycleAI-14999991.onnx",
+                "reward": 130.59718135744333,
+                "creation_time": 1760658472.3344948,
+                "auxillary_file_paths": [
+                    "results\\MotorcycleRun02\\MotorcycleAI\\MotorcycleAI-14999991.pt"
+                ]
+            },
+            {
+                "steps": 15000023,
+                "file_path": "results\\MotorcycleRun02\\MotorcycleAI\\MotorcycleAI-15000023.onnx",
+                "reward": 130.59718135744333,
+                "creation_time": 1760658473.1457517,
+                "auxillary_file_paths": [
+                    "results\\MotorcycleRun02\\MotorcycleAI\\MotorcycleAI-15000023.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 15000023,
+            "file_path": "results\\MotorcycleRun02\\MotorcycleAI.onnx",
+            "reward": 130.59718135744333,
+            "creation_time": 1760658473.1457517,
+            "auxillary_file_paths": [
+                "results\\MotorcycleRun02\\MotorcycleAI\\MotorcycleAI-15000023.pt"
+            ]
+        }
+    }
+}
