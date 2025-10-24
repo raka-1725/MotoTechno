@@ -96,5 +96,3 @@ No bugs yet
 # Credits
 
 Unity Engine, C#, Unity ML-Agent
-
-
