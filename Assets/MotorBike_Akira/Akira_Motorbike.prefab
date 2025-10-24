@@ -167,7 +167,7 @@ GameObject:
   - component: {fileID: 8513690849921459039}
   m_Layer: 0
   m_Name: R-Mirror_render
-  m_TagString: Untagged
+  m_TagString: Mirror
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -942,7 +942,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -145}
-  m_SizeDelta: {x: 400, y: 50}
+  m_SizeDelta: {x: 600, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1275001111516963628
 CanvasRenderer:
@@ -1006,7 +1006,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -1184,7 +1184,7 @@ GameObject:
   - component: {fileID: 8465578174770756103}
   m_Layer: 0
   m_Name: L-Mirror_render
-  m_TagString: Untagged
+  m_TagString: Mirror
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1434,7 +1434,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7390065338332067343}
   - component: {fileID: 7419875212543467575}
-  - component: {fileID: 123030675854150728}
   - component: {fileID: 5841461291111803029}
   - component: {fileID: 6973831685339195301}
   m_Layer: 0
@@ -1510,14 +1509,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &123030675854150728
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6304460041235178282}
-  m_Enabled: 0
 --- !u!114 &5841461291111803029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1774,7 +1765,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4653034502700832062}
   - component: {fileID: 565416035380710066}
-  - component: {fileID: 2655384197693114139}
   - component: {fileID: 2639406899354708075}
   m_Layer: 0
   m_Name: FPVCamera
@@ -1849,14 +1839,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &2655384197693114139
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6997043350961131939}
-  m_Enabled: 1
 --- !u!114 &2639406899354708075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2048,19 +2030,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ac0915f9dc621494ea8f2130255dc1af, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 19.497646
+      value: -0.85
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ac0915f9dc621494ea8f2130255dc1af, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.44
+      value: 0.767
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ac0915f9dc621494ea8f2130255dc1af, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -11.431858
+      value: 8.56
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ac0915f9dc621494ea8f2130255dc1af, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.0000015199182
+      value: -0.70710576
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ac0915f9dc621494ea8f2130255dc1af, type: 3}
       propertyPath: m_LocalRotation.x
@@ -2068,7 +2050,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ac0915f9dc621494ea8f2130255dc1af, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 1
+      value: 0.70710784
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ac0915f9dc621494ea8f2130255dc1af, type: 3}
       propertyPath: m_LocalRotation.z
@@ -2080,7 +2062,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ac0915f9dc621494ea8f2130255dc1af, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 270
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ac0915f9dc621494ea8f2130255dc1af, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -2262,6 +2244,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Akira_Motorbike
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ac0915f9dc621494ea8f2130255dc1af, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ac0915f9dc621494ea8f2130255dc1af, type: 3}
+      propertyPath: m_TagString
+      value: PlayerMotorCycle
+      objectReference: {fileID: 0}
     - target: {fileID: 2519219010518134924, guid: ac0915f9dc621494ea8f2130255dc1af, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
@@ -2362,6 +2352,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ac0915f9dc621494ea8f2130255dc1af, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1739485909161619130}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ac0915f9dc621494ea8f2130255dc1af, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8008496060628532793}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ac0915f9dc621494ea8f2130255dc1af, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -5927540027519904702}
   m_SourcePrefab: {fileID: 100100000, guid: ac0915f9dc621494ea8f2130255dc1af, type: 3}
 --- !u!4 &443326309015939317 stripped
 Transform:
@@ -2407,7 +2403,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 967379198652625487}
   serializedVersion: 5
-  m_Mass: 800
+  m_Mass: 1000
   m_LinearDamping: 0.3
   m_AngularDamping: 0.1
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -2442,8 +2438,8 @@ MonoBehaviour:
   mCurrentSteerAngle: 0
   AkiraMoto: 1
   InvertSteer: 0
-  mMotoSpecCustom: {fileID: 11400000, guid: 1bff4cbeca02d5c4681ba4277de9bab8, type: 2}
-  mMaxSteerAngle: 0
+  mMotoSpecCustom: {fileID: 11400000, guid: ffcbfcdec114dcf4cb26ab001397dd3d, type: 2}
+  mMaxSteerAngle: 35
   bRegenBrake: 0
   bOverTakePower: 0
   mBattery: 0
@@ -2480,6 +2476,42 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mSpeedText: {fileID: 6063249306871952633}
   mBattery: {fileID: 4558676173333178451}
+--- !u!114 &8008496060628532793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 967379198652625487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3668480e04e3dce4b8b1b0c92b3fcc50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mCheckPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  currentLap: 0
+  currentSector: 0
+  LapTime: 0
+  SectorTime: 0
+  mCurrentcheckPoint: 0
+--- !u!114 &-5927540027519904702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 967379198652625487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd6045c16ccdcc54c9948473bf229f26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vehicleIndex: 0
+  checkPointPassed: 0
+  position: 0
 --- !u!4 &3187523938708591560 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -5939711678328333098, guid: ac0915f9dc621494ea8f2130255dc1af, type: 3}

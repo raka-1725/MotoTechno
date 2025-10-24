@@ -35,6 +35,7 @@ public class MotorCycleCusomization : ScriptableObject
     public bool RearWing;
     public bool FrontWinglet;
     public bool DefaultBodyColor;
+    public bool RandomBodyColor;
     public Color mDefaultBodyColor;
     public Color mCustomBodyColor;
 

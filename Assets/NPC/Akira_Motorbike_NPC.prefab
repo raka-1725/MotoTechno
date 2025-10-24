@@ -72,6 +72,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Akira_Motorbike_NPC
       objectReference: {fileID: 0}
+    - target: {fileID: 967379198652625487, guid: 35ad766ecf068bd408600c7b31d2909a, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 1462040889235355530, guid: 35ad766ecf068bd408600c7b31d2909a, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 25103abd41ba1c04b9276b781149d230, type: 2}
     - target: {fileID: 1754918292447849804, guid: 35ad766ecf068bd408600c7b31d2909a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.0015454137
@@ -300,6 +308,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -360
       objectReference: {fileID: 0}
+    - target: {fileID: 8388790155206754258, guid: 35ad766ecf068bd408600c7b31d2909a, type: 3}
+      propertyPath: m_Size.x
+      value: 0.18
+      objectReference: {fileID: 0}
     - target: {fileID: 8442812275852448122, guid: 35ad766ecf068bd408600c7b31d2909a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.0011457446
@@ -327,6 +339,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 5065916409023086038, guid: 35ad766ecf068bd408600c7b31d2909a, type: 3}
     - {fileID: 1739485909161619130, guid: 35ad766ecf068bd408600c7b31d2909a, type: 3}
+    - {fileID: 8008496060628532793, guid: 35ad766ecf068bd408600c7b31d2909a, type: 3}
     m_RemovedGameObjects:
     - {fileID: 512098314192016328, guid: 35ad766ecf068bd408600c7b31d2909a, type: 3}
     - {fileID: 5235929171641934517, guid: 35ad766ecf068bd408600c7b31d2909a, type: 3}
@@ -374,12 +387,17 @@ MonoBehaviour:
   MaxStep: 0
   mBrakeAccel: 0
   mCurrentSteerAngle: 0
+  currentWPindex: 0
+  mWPprox: 3
+  mStartTransform: {fileID: 0}
   AkiraMoto: 1
   InvertSteer: 0
+  RaceMode: 1
   mMotoSpecCustom: {fileID: 11400000, guid: 1bd0d7f0a320ef945a5f9cc06ed4f7df, type: 2}
   mMaxSteerAngle: 30
   bRegenBrake: 0
   bOverTakePower: 0
+  mSmoothInput: 15
   mBattery: 0
   mBrakeLight_R: {fileID: 3195502501800601825}
   mBrakeLight_L: {fileID: 3040872410168996677}
@@ -389,7 +407,8 @@ MonoBehaviour:
   mDriveTypes: 1
   mRearWing: {fileID: 4169254854037444657}
   mFrontWinglet: {fileID: 8654486175068201385}
-  mBodyColorMaterial: {fileID: 2100000, guid: 91a763c8f30dcaa44bb01bedfe3fcf73, type: 2}
+  mBodyColorMaterial: {fileID: 2100000, guid: 25103abd41ba1c04b9276b781149d230, type: 2}
+  mBodyTransform: {fileID: 5589223193568278238}
   mWColliderFront: {fileID: 2808492432347754468}
   mWColliderRear: {fileID: 3728696154159551624}
   Speed: 0
@@ -422,9 +441,9 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 5022602860645237092, guid: d37b1c3ee40dbf841ab05d10bd4b4a12, type: 3}
   m_InferenceDevice: 0
-  m_BehaviorType: 0
+  m_BehaviorType: 2
   m_BehaviorName: MotorcycleAI
   TeamId: 0
   m_UseChildSensors: 0
@@ -504,6 +523,11 @@ WheelCollider:
 --- !u!1 &4169254854037444657 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4317413244934948582, guid: 35ad766ecf068bd408600c7b31d2909a, type: 3}
+  m_PrefabInstance: {fileID: 159494381551984343}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5589223193568278238 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5739357969369360393, guid: 35ad766ecf068bd408600c7b31d2909a, type: 3}
   m_PrefabInstance: {fileID: 159494381551984343}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &8654486175068201385 stripped

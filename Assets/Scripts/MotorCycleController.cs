@@ -10,12 +10,14 @@ public class MotorCycleController : MonoBehaviour
     MotorCycleInputAction mInputAction;
     TrailRenderer mSkidMarks;
     MotorCycleUI mMotoUI;
+    CountDownStart mCountDownStart;
 
     private Vector2 mMoveInput;
     private float mHorizontalSteer; //horizontal input
     [SerializeField] private float mBrakeAccel; //vertical input
     [SerializeField] private float mCurrentSteerAngle;
     private float mCurrentBrakeForce;
+    private bool bCanDrive = false;
 
     private Rigidbody rb;
 
@@ -89,6 +91,7 @@ public class MotorCycleController : MonoBehaviour
         mInputAction.MotorCycle.MotoOverTake.performed += OnOverTakeInput;
         mInputAction.MotorCycle.MotoOverTake.canceled += OnOverTakeInputRelease;
         rb = GetComponent<Rigidbody>();
+        mCountDownStart = FindAnyObjectByType<CountDownStart>();
 
         //visual
         if (bSkidOn) 
@@ -112,6 +115,15 @@ public class MotorCycleController : MonoBehaviour
         //UI
         mMotoUI = GetComponent<MotorCycleUI>();
 
+
+        //Start
+        mCountDownStart.onRaceStart += RaceStart;
+
+    }
+
+    private void RaceStart(CountDownStart sender) 
+    {
+        bCanDrive = true;
     }
 
 
@@ -201,6 +213,13 @@ public class MotorCycleController : MonoBehaviour
     }
     private void HandleMotor()
     {
+        if (!bCanDrive)
+        {
+            mWColliderFront.motorTorque = 0f;
+            mWColliderRear.motorTorque = 0f;
+            mWColliderFront.brakeTorque = 100f;
+            return;
+        }
         mBrakeAccel = (mMoveInput.y);
         if (mBrakeAccel >= 0) { bIsBraking = false; }
         if (mBrakeAccel < 0) { bIsBraking = true; }

@@ -480,13 +480,29 @@ PrefabInstance:
       propertyPath: mWPprox
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 7109636585939255410, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: mSmoothInput
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7109636585939255410, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: mMaxSteerAngle
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
       propertyPath: m_Model
       value: 
+      objectReference: {fileID: 5022602860645237092, guid: d37b1c3ee40dbf841ab05d10bd4b4a12, type: 3}
+    - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: m_BehaviorName
+      value: MotorcycleAI
       objectReference: {fileID: 0}
     - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
       propertyPath: m_BehaviorType
-      value: 0
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: m_DeterministicInference
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -942,13 +958,29 @@ PrefabInstance:
       propertyPath: mWPprox
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 7109636585939255410, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: mSmoothInput
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7109636585939255410, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: mMaxSteerAngle
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 5022602860645237092, guid: 213814e62ea09f94b8e1c908be5f7886, type: 3}
+      objectReference: {fileID: 5022602860645237092, guid: d37b1c3ee40dbf841ab05d10bd4b4a12, type: 3}
+    - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: m_BehaviorName
+      value: MotorcycleAI
+      objectReference: {fileID: 0}
     - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
       propertyPath: m_BehaviorType
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: m_DeterministicInference
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1924,13 +1956,29 @@ PrefabInstance:
       propertyPath: mWPprox
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 7109636585939255410, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: mSmoothInput
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7109636585939255410, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: mMaxSteerAngle
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 5022602860645237092, guid: 213814e62ea09f94b8e1c908be5f7886, type: 3}
+      objectReference: {fileID: 5022602860645237092, guid: d37b1c3ee40dbf841ab05d10bd4b4a12, type: 3}
+    - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: m_BehaviorName
+      value: MotorcycleAI
+      objectReference: {fileID: 0}
     - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
       propertyPath: m_BehaviorType
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: m_DeterministicInference
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2023,13 +2071,29 @@ PrefabInstance:
       propertyPath: mWPprox
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 7109636585939255410, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: mSmoothInput
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7109636585939255410, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: mMaxSteerAngle
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 5022602860645237092, guid: 213814e62ea09f94b8e1c908be5f7886, type: 3}
+      objectReference: {fileID: 5022602860645237092, guid: d37b1c3ee40dbf841ab05d10bd4b4a12, type: 3}
+    - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: m_BehaviorName
+      value: MotorcycleAI
+      objectReference: {fileID: 0}
     - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
       propertyPath: m_BehaviorType
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: m_DeterministicInference
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2298,13 +2362,29 @@ PrefabInstance:
       propertyPath: mWPprox
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 7109636585939255410, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: mSmoothInput
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7109636585939255410, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: mMaxSteerAngle
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 5022602860645237092, guid: 213814e62ea09f94b8e1c908be5f7886, type: 3}
+      objectReference: {fileID: 5022602860645237092, guid: d37b1c3ee40dbf841ab05d10bd4b4a12, type: 3}
+    - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: m_BehaviorName
+      value: MotorcycleAI
+      objectReference: {fileID: 0}
     - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
       propertyPath: m_BehaviorType
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: m_DeterministicInference
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2397,13 +2477,29 @@ PrefabInstance:
       propertyPath: mWPprox
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 7109636585939255410, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: mSmoothInput
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7109636585939255410, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: mMaxSteerAngle
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 5022602860645237092, guid: 213814e62ea09f94b8e1c908be5f7886, type: 3}
+      objectReference: {fileID: 5022602860645237092, guid: d37b1c3ee40dbf841ab05d10bd4b4a12, type: 3}
+    - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: m_BehaviorName
+      value: MotorcycleAI
+      objectReference: {fileID: 0}
     - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
       propertyPath: m_BehaviorType
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: m_DeterministicInference
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3067,13 +3163,29 @@ PrefabInstance:
       propertyPath: mWPprox
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 7109636585939255410, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: mSmoothInput
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7109636585939255410, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: mMaxSteerAngle
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
       propertyPath: m_Model
       value: 
+      objectReference: {fileID: 5022602860645237092, guid: d37b1c3ee40dbf841ab05d10bd4b4a12, type: 3}
+    - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: m_BehaviorName
+      value: MotorcycleAI
       objectReference: {fileID: 0}
     - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
       propertyPath: m_BehaviorType
-      value: 0
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: m_DeterministicInference
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5463,13 +5575,29 @@ PrefabInstance:
       propertyPath: mWPprox
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 7109636585939255410, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: mSmoothInput
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7109636585939255410, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: mMaxSteerAngle
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
       propertyPath: m_Model
       value: 
+      objectReference: {fileID: 5022602860645237092, guid: d37b1c3ee40dbf841ab05d10bd4b4a12, type: 3}
+    - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: m_BehaviorName
+      value: MotorcycleAI
       objectReference: {fileID: 0}
     - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
       propertyPath: m_BehaviorType
-      value: 0
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: m_DeterministicInference
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5598,13 +5726,29 @@ PrefabInstance:
       propertyPath: mWPprox
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 7109636585939255410, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: mSmoothInput
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7109636585939255410, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: mMaxSteerAngle
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 5022602860645237092, guid: 213814e62ea09f94b8e1c908be5f7886, type: 3}
+      objectReference: {fileID: 5022602860645237092, guid: d37b1c3ee40dbf841ab05d10bd4b4a12, type: 3}
+    - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: m_BehaviorName
+      value: MotorcycleAI
+      objectReference: {fileID: 0}
     - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
       propertyPath: m_BehaviorType
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: m_DeterministicInference
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7101,13 +7245,29 @@ PrefabInstance:
       propertyPath: mWPprox
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 7109636585939255410, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: mSmoothInput
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7109636585939255410, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: mMaxSteerAngle
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
       propertyPath: m_Model
       value: 
+      objectReference: {fileID: 5022602860645237092, guid: d37b1c3ee40dbf841ab05d10bd4b4a12, type: 3}
+    - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: m_BehaviorName
+      value: MotorcycleAI
       objectReference: {fileID: 0}
     - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
       propertyPath: m_BehaviorType
-      value: 0
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: m_DeterministicInference
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7952,13 +8112,29 @@ PrefabInstance:
       propertyPath: mWPprox
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 7109636585939255410, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: mSmoothInput
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7109636585939255410, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: mMaxSteerAngle
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 5022602860645237092, guid: 213814e62ea09f94b8e1c908be5f7886, type: 3}
+      objectReference: {fileID: 5022602860645237092, guid: d37b1c3ee40dbf841ab05d10bd4b4a12, type: 3}
+    - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: m_BehaviorName
+      value: MotorcycleAI
+      objectReference: {fileID: 0}
     - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
       propertyPath: m_BehaviorType
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: m_DeterministicInference
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8436,10 +8612,22 @@ PrefabInstance:
       propertyPath: mWPprox
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 7109636585939255410, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: mSmoothInput
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7109636585939255410, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: mMaxSteerAngle
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 5022602860645237092, guid: 213814e62ea09f94b8e1c908be5f7886, type: 3}
+      objectReference: {fileID: 5022602860645237092, guid: d37b1c3ee40dbf841ab05d10bd4b4a12, type: 3}
+    - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: m_BehaviorName
+      value: MotorcycleAI
+      objectReference: {fileID: 0}
     - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
       propertyPath: m_BehaviorType
       value: 2
@@ -8776,13 +8964,29 @@ PrefabInstance:
       propertyPath: mWPprox
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 7109636585939255410, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: mSmoothInput
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7109636585939255410, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: mMaxSteerAngle
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 5022602860645237092, guid: 213814e62ea09f94b8e1c908be5f7886, type: 3}
+      objectReference: {fileID: 5022602860645237092, guid: d37b1c3ee40dbf841ab05d10bd4b4a12, type: 3}
+    - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: m_BehaviorName
+      value: MotorcycleAI
+      objectReference: {fileID: 0}
     - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
       propertyPath: m_BehaviorType
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: m_DeterministicInference
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9968,13 +10172,29 @@ PrefabInstance:
       propertyPath: mWPprox
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 7109636585939255410, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: mSmoothInput
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7109636585939255410, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: mMaxSteerAngle
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
       propertyPath: m_Model
       value: 
+      objectReference: {fileID: 5022602860645237092, guid: d37b1c3ee40dbf841ab05d10bd4b4a12, type: 3}
+    - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: m_BehaviorName
+      value: MotorcycleAI
       objectReference: {fileID: 0}
     - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
       propertyPath: m_BehaviorType
-      value: 0
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401581384925995402, guid: 51c92ba697547ac4782ea6cbb779fc65, type: 3}
+      propertyPath: m_DeterministicInference
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

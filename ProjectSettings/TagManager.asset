@@ -11,6 +11,8 @@ TagManager:
   - Grass
   - DirtyTarmac
   - Gravel
+  - StartGrid
+  - SectorCheckpoints
   layers:
   - Default
   - TransparentFX

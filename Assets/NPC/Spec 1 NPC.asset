@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25d191969f8b4f8458634b0f07beaddf, type: 3}
   m_Name: Spec 1 NPC
   m_EditorClassIdentifier: 
-  MaxPower: 5000
+  MaxPower: 6000
   BrakeTorque: 1000
   RearWingGripMultiplier: 1.5
   FrontWingletGripMultiplier: 1.2
@@ -24,5 +24,6 @@ MonoBehaviour:
   RearWing: 0
   FrontWinglet: 0
   DefaultBodyColor: 0
+  RandomBodyColor: 1
   mDefaultBodyColor: {r: 0.87058824, g: 0.101960786, b: 0.101960786, a: 0}
-  mCustomBodyColor: {r: 0.21813813, g: 0.8113208, b: 0.2493887, a: 0}
+  mCustomBodyColor: {r: 0, g: 1, b: 0.05633807, a: 1}

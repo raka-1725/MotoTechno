@@ -12,17 +12,22 @@ public class MotorCycleController_NPC : Unity.MLAgents.Agent
 {
     TrailRenderer mSkidMarks;
     NPC_Path mPath;
+    CountDownStart mCountDownStart;
+
     private Vector2 mMoveInput;
     private float mHorizontalSteer; //horizontal input
-    [SerializeField] private float mBrakeAccel; //vertical input
-    [SerializeField] private float mCurrentSteerAngle;
+    [SerializeField] float mBrakeAccel; //vertical input
+    [SerializeField] float mCurrentSteerAngle;
     private float mCurrentBrakeForce;
+    private bool bCanDrive = false;
 
     private float stuckTimer = 0f;
 
     [Header("Waypoints")]
     [SerializeField] private int currentWPindex = 0;
-    [SerializeField] private float mWPprox = 3; 
+    [SerializeField] private float mWPprox = 3;
+
+    [SerializeField] private Transform mStartTransform;
 
 
     private Rigidbody rb;
@@ -30,6 +35,7 @@ public class MotorCycleController_NPC : Unity.MLAgents.Agent
     [Header("Mode")]
     public bool AkiraMoto; //special mode for the akira motorcycle (some of the axis are inverted)
     public bool InvertSteer;
+    public bool RaceMode;
 
 
     //Set ScriptableObject for vehicle stats
@@ -41,6 +47,9 @@ public class MotorCycleController_NPC : Unity.MLAgents.Agent
     [SerializeField] private bool bRegenBrake;
     [SerializeField] private bool bOverTakePower;
     private bool bIsBraking;
+    Vector2 smoothInput = Vector2.zero;
+
+    [SerializeField] private float mSmoothInput = 15f;
 
     private float mExtraGripR;
     private float mExtraGripF;
@@ -69,6 +78,8 @@ public class MotorCycleController_NPC : Unity.MLAgents.Agent
     public GameObject mFrontWinglet;
     public Material mBodyColorMaterial;
 
+    public Transform mBodyTransform;
+
     [Header("Wheel Colliders")]
     [SerializeField] private WheelCollider mWColliderFront;
     [SerializeField] private WheelCollider mWColliderRear;
@@ -90,6 +101,7 @@ public class MotorCycleController_NPC : Unity.MLAgents.Agent
     {
         rb = GetComponent<Rigidbody>();
         mPath = FindAnyObjectByType<NPC_Path>();
+        mCountDownStart = FindAnyObjectByType<CountDownStart>();
 
         //visual
         if (bSkidOn) 
@@ -108,10 +120,20 @@ public class MotorCycleController_NPC : Unity.MLAgents.Agent
         mOverTakePowerIndex = mMotoSpecCustom.OverTakeIndex;
         mExtraGripF = mMotoSpecCustom.FrontWingletGripMultiplier ;
         mExtraGripR = mMotoSpecCustom.RearWingGripMultiplier;
-        CheckVehicleStatsSet();
+
+
+
+        mCountDownStart.onRaceStart += RaceStart;
 
     }
-
+    private void Start()
+    {
+        CheckVehicleStatsSet();
+    }
+    private void RaceStart(CountDownStart sender)
+    {
+        bCanDrive = true;
+    }
 
     private void Update()
     {
@@ -158,23 +180,57 @@ public class MotorCycleController_NPC : Unity.MLAgents.Agent
         }
 
         mWColliderFront.forwardFriction = frontWheelFriction;
-        mWColliderRear.forwardFriction = rearWheelFriction; 
+        mWColliderRear.forwardFriction = rearWheelFriction;
 
         //bodycolor
 
-        if (mMotoSpecCustom.DefaultBodyColor == false)
-        {
-            mBodyColorMaterial.color = mMotoSpecCustom.mCustomBodyColor;
-        }
-        else
-        {
-            mBodyColorMaterial.color = mMotoSpecCustom.mDefaultBodyColor;
-        }
+        SetBodyColor();
+    }
 
+    private void SetBodyColor()
+    {
+        Renderer bodyRenderer = mBodyTransform.GetComponent<Renderer>();
+        Material[] materials = bodyRenderer.materials;
+        for (int i = 0; i < materials.Length; i++)
+        {
+            if (materials[i].name.Contains("NPC1_BodyVariable Variant"))
+            {
+                Material bodyMat = Instantiate(materials[i]);
+                if (mMotoSpecCustom.RandomBodyColor)
+                {
+                    bodyMat.color = RandomBodyColor();
+                }
+                else if (!mMotoSpecCustom.DefaultBodyColor)
+                {
+                    bodyMat.color = mMotoSpecCustom.mCustomBodyColor;
+                }
+                else
+                {
+                    bodyMat.color = mMotoSpecCustom.mDefaultBodyColor;
+                }
+
+                materials[i] = bodyMat;
+                mBodyColorMaterial = bodyMat;
+            }
+        }
+        bodyRenderer.materials = materials;
+    }
+
+    private Color RandomBodyColor()
+    {
+        Color randomcolor = new Color(Random.value, Random.value, Random.value);
+        return randomcolor;
     }
 
     private void HandleMotor()
     {
+        if (!bCanDrive)
+        {
+            mWColliderFront.motorTorque = 0f;
+            mWColliderRear.motorTorque = 0f;
+            mWColliderFront.brakeTorque = 100f;
+            return;
+        }
         mBrakeAccel = (mMoveInput.y);
         if (mBrakeAccel >= 0) { bIsBraking = false; }
         if (mBrakeAccel < 0) { bIsBraking = true; }
@@ -292,6 +348,11 @@ public class MotorCycleController_NPC : Unity.MLAgents.Agent
         else { mSkidMarks.emitting = false; }
     }
 
+    public void SetStartTransform(Transform transform) 
+    {
+        mStartTransform = transform;
+    }
+
 
 
     private void OnDrawGizmos()
@@ -317,7 +378,7 @@ public class MotorCycleController_NPC : Unity.MLAgents.Agent
 
         if (distanceToWP < mWPprox)
         {
-            AddReward(1.0f);
+            AddReward(0.4f);
             currentWPindex++;
             if (currentWPindex >= mPath.waypoints.Count)
             {
@@ -326,7 +387,7 @@ public class MotorCycleController_NPC : Unity.MLAgents.Agent
         }
     }
 
-    //Below is for training AI
+    //Below is for AI
     private void OnTriggerEnter(Collider other)
     {
 
@@ -334,17 +395,26 @@ public class MotorCycleController_NPC : Unity.MLAgents.Agent
         {
             case "Wall":
                 AddReward(-2f);
-                EndEpisode();
+                if (!RaceMode) 
+                {
+                    EndEpisode();
+                }
                 break;
 
             case "Grass":
                 AddReward(-1.5f);
-                EndEpisode();
+                if (!RaceMode)
+                {
+                    EndEpisode();
+                }
                 break;
 
             case "Gravel":
                 AddReward(-1.8f);
-                EndEpisode();
+                if (!RaceMode) 
+                {
+                    EndEpisode();
+                }
                 break;
             case "DirtyTarmac":
                 AddReward(-0.5f); 
@@ -377,7 +447,10 @@ public class MotorCycleController_NPC : Unity.MLAgents.Agent
         if (stuckTimer > 5f)
         {
             AddReward(-1f);
-            EndEpisode();
+            if (!RaceMode)
+            {
+                EndEpisode();
+            }
         }
     }
 
@@ -386,7 +459,15 @@ public class MotorCycleController_NPC : Unity.MLAgents.Agent
 
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
-        transform.position = new Vector3(0, 0, 6.5f);
+
+        if (!RaceMode)
+        {
+            transform.position = new Vector3(0, 0, 6.5f);
+        }
+        else 
+        {
+            transform.position = mStartTransform.position;
+        }
         transform.rotation = Quaternion.Euler(0, 90, 0);
 
         mBattery = mMotoSpecCustom.BatteryCapacity;
@@ -418,21 +499,31 @@ public class MotorCycleController_NPC : Unity.MLAgents.Agent
     public override void OnActionReceived(Unity.MLAgents.Actuators.ActionBuffers actions)
     {
         float moveY = Mathf.Clamp(actions.ContinuousActions[0], -1f, 1f); 
-        float steerX = Mathf.Clamp(actions.ContinuousActions[1], -1f, 1f);
+        float steerX = Mathf.Sign(actions.ContinuousActions[1]) * Mathf.Pow(Mathf.Abs(actions.ContinuousActions[1]), 1.5f);
+        if (Mathf.Abs(steerX) < 0.25f) 
+        {
+            steerX = 0f;
+        }
+
+        float steerChange = Mathf.Abs(steerX - mMoveInput.x);
+        AddReward(-steerChange * 0.002f);
         float regen = actions.ContinuousActions.Length > 2 ? actions.ContinuousActions[2] : 0;
         var contActions = actions.ContinuousActions;
         //Debug.Log($"AI actions: {contActions[0]}, {contActions[1]}, {(contActions.Length > 2 ? contActions[2] : 0)}");
         //Debug.Log($"AI input moveY: {moveY}, steerX: {steerX}, regen: {regen}");
 
-        mMoveInput = new Vector2(steerX, moveY);
+        Vector2 targetInput = new Vector2(steerX, moveY);
+        smoothInput = Vector2.Lerp(smoothInput, targetInput, Time.fixedDeltaTime * mSmoothInput);
+        mMoveInput = smoothInput;
         bRegenBrake = regen > 0.5f;
 
         Vector3 directionToWP = (mPath.waypoints[currentWPindex].position - transform.position).normalized;
         float alignment = Vector3.Dot(transform.forward, directionToWP);
         AddReward(alignment * 0.005f);
 
+
         float forwardSpeed = Vector3.Dot(rb.linearVelocity, transform.forward);
-        AddReward(forwardSpeed * 0.001f);
+        AddReward(forwardSpeed * 0.005f);
 
 
         float steerDirection = Mathf.Sign(Vector3.SignedAngle(transform.forward, directionToWP, Vector3.up));
@@ -442,25 +533,37 @@ public class MotorCycleController_NPC : Unity.MLAgents.Agent
 
 
         float speedTowardsWP = Vector3.Dot(rb.linearVelocity, directionToWP);
-        AddReward(Mathf.Clamp(speedTowardsWP, 0, 20) * 0.0005f);
+        AddReward(Mathf.Clamp(speedTowardsWP, 0, 20) * 0.001f);
 
-        
+        AddReward((mBattery / mMotoSpecCustom.BatteryCapacity) * 0.001f);
+
+        if (alignment > 0.95f && Mathf.Abs(steerX) < 0.1f)
+        {
+            AddReward(0.002f);
+        }
+
         if (alignment < 0.5f)
         {
             AddReward(-0.005f);
         }
         if (mBattery <= 0)
         {
-            AddReward(-1f); 
-            EndEpisode();
+            AddReward(-1f);
+            if (!RaceMode)
+            {
+                EndEpisode();
+            }
         }
         if (bRegenBrake && Speed > 10f)
             AddReward(0.001f);
 
         if (transform.position.y < -5f)
         {
-            AddReward(-1f); 
-            EndEpisode();
+            AddReward(-1f);
+            if (!RaceMode)
+            {
+                EndEpisode();
+            }
         }
     }
 
