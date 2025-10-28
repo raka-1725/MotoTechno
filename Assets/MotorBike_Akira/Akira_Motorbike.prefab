@@ -2492,6 +2492,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  bStopTimer: 1
   currentLap: 0
   currentSector: 0
   LapTime: 0
@@ -2509,9 +2510,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd6045c16ccdcc54c9948473bf229f26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bIsPlayer: 1
   vehicleIndex: 0
   checkPointPassed: 0
   position: 0
+  distanceAlongTrack: 0
 --- !u!4 &3187523938708591560 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -5939711678328333098, guid: ac0915f9dc621494ea8f2130255dc1af, type: 3}

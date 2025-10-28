@@ -13,6 +13,7 @@ public class MotorCycleController_NPC : Unity.MLAgents.Agent
     TrailRenderer mSkidMarks;
     NPC_Path mPath;
     CountDownStart mCountDownStart;
+    RaceManager mRaceManager;
 
     private Vector2 mMoveInput;
     private float mHorizontalSteer; //horizontal input
@@ -97,11 +98,16 @@ public class MotorCycleController_NPC : Unity.MLAgents.Agent
     [SerializeField] private Transform mFrontWheelTransform;
     [SerializeField] private Transform mRearWheelTransform;
 
+    private Vector3 lastRespawnPosition;
+    private Quaternion lastRespawnRotation;
+    public bool bCanRespawn;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         mPath = FindAnyObjectByType<NPC_Path>();
         mCountDownStart = FindAnyObjectByType<CountDownStart>();
+        mRaceManager = FindAnyObjectByType<RaceManager>();
 
         //visual
         if (bSkidOn) 
@@ -122,10 +128,16 @@ public class MotorCycleController_NPC : Unity.MLAgents.Agent
         mExtraGripR = mMotoSpecCustom.RearWingGripMultiplier;
 
 
-
+        mRaceManager.onRaceFinished += RaceFinish;
         mCountDownStart.onRaceStart += RaceStart;
 
     }
+
+    private void RaceFinish(RaceManager manager)
+    {
+        bCanDrive = false;
+    }
+
     private void Start()
     {
         CheckVehicleStatsSet();
@@ -380,6 +392,10 @@ public class MotorCycleController_NPC : Unity.MLAgents.Agent
         {
             AddReward(0.4f);
             currentWPindex++;
+
+            lastRespawnPosition = transform.position;
+            lastRespawnRotation = transform.rotation;
+
             if (currentWPindex >= mPath.waypoints.Count)
             {
                 currentWPindex = 0;
@@ -444,14 +460,29 @@ public class MotorCycleController_NPC : Unity.MLAgents.Agent
             stuckTimer = 0f;
         }
 
-        if (stuckTimer > 5f)
+        if (stuckTimer > 10f)
         {
             AddReward(-1f);
             if (!RaceMode)
             {
                 EndEpisode();
             }
+            if (bCanRespawn) 
+            {
+                RespawnAtLastPosition();
+            }
         }
+    }
+    private void RespawnAtLastPosition()
+    {
+
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        transform.position = lastRespawnPosition;
+        transform.rotation = lastRespawnRotation;
+        rb.AddForce(transform.forward * 5f, ForceMode.VelocityChange);
+
+        stuckTimer = 0f;
     }
 
     public override void OnEpisodeBegin()
@@ -469,6 +500,10 @@ public class MotorCycleController_NPC : Unity.MLAgents.Agent
             transform.position = mStartTransform.position;
         }
         transform.rotation = Quaternion.Euler(0, 90, 0);
+
+        lastRespawnPosition = transform.position;
+        lastRespawnRotation = transform.rotation;
+
 
         mBattery = mMotoSpecCustom.BatteryCapacity;
         currentWPindex = 0;

@@ -2,7 +2,12 @@ using UnityEngine;
 
 public class LapChecker : MonoBehaviour
 {
+    DisplayRaceStats mDisplayRaceStats;
+    CountDownStart mCountDownStart;
     [SerializeField] private GameObject[] mCheckPoints;
+
+    public bool bStopTimer = true;
+
     [Header("CurrentLap/Sector")]
     public int currentLap = 0;
     public int currentSector = 0;
@@ -16,11 +21,18 @@ public class LapChecker : MonoBehaviour
     private void Awake()
     {
         mCheckPoints = GameObject.FindGameObjectsWithTag("SectorCheckpoints");
+        mDisplayRaceStats = FindAnyObjectByType<DisplayRaceStats>();
+        mCountDownStart = FindAnyObjectByType<CountDownStart>();
         foreach (GameObject checkpoints in mCheckPoints) 
         {
             Checkpoint checkpoint = checkpoints.GetComponent<Checkpoint>();
             checkpoint.SetLapChecker();
         }
+        mCountDownStart.onRaceStart += RaceStart;
+    }
+    private void RaceStart(CountDownStart sender) 
+    {
+        bStopTimer = false;
     }
     public void PassCheckPoint(int checkpointIndex) 
     {
@@ -39,6 +51,7 @@ public class LapChecker : MonoBehaviour
 
             if (checkpointIndex == 0) 
             {
+                mDisplayRaceStats.UpdateLapUI(currentLap + 1, LapTime);
                 NewLap();
             }
         }
@@ -47,6 +60,8 @@ public class LapChecker : MonoBehaviour
     private void Update()
     {
         LapTimer();
+        mDisplayRaceStats.UpdateLapTimeUI(LapTime);
+        mDisplayRaceStats.UpdateSetcorUI(SectorTime);
     }
 
     private float UpdateSectorTime() 
@@ -60,7 +75,10 @@ public class LapChecker : MonoBehaviour
 
     private void LapTimer() 
     {
-        LapTime += Time.deltaTime;
+        if (!bStopTimer) 
+        {
+            LapTime += Time.deltaTime;
+        }
     }
 
     private void NewLap() 

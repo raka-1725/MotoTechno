@@ -59,9 +59,9 @@ NPC's are still in progress of development, therefore there is only solo mode as
 
 ```MotorcycleController_NPC``` - A class that manages all the controll of the NPC motorcycle. Requires all the components for ML-Agents.
 * Config
-  |Python|pip|ML-Agents|
+  |Python|PyTorch|ML-Agents|
   |------|---|---------|
-  |3.10.11|1.1.0|3.0.0|
+  |3.10.11|2.8.0|3.0.0|
 
 * Controls awarding/Punishing AI
 * Handles Inputs for AI

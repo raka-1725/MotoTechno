@@ -4,7 +4,17 @@ using UnityEngine;
 public class NPC_Path : MonoBehaviour
 {
     public List<Transform> waypoints = new List<Transform>();
+    public float totoalLength;
 
+    private void Awake()
+    {
+        totoalLength = 0f;
+        for (int i = 0; i < waypoints.Count; i++)
+        {
+            int next = (i + 1) % waypoints.Count;
+            totoalLength += Vector3.Distance(waypoints[i].position, waypoints[next].position);
+        }
+    }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.orange;

@@ -6,6 +6,7 @@ public class MotorCycleUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI mSpeedText;
     [SerializeField] private TextMeshProUGUI mBattery;
 
+
     public void Speed(float speed) 
     {
         mSpeedText.text = speed.ToString("0.00");

@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -5927540027519904702, guid: 35ad766ecf068bd408600c7b31d2909a, type: 3}
+      propertyPath: bIsPlayer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 443326309015939317, guid: 35ad766ecf068bd408600c7b31d2909a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -71,6 +75,10 @@ PrefabInstance:
     - target: {fileID: 967379198652625487, guid: 35ad766ecf068bd408600c7b31d2909a, type: 3}
       propertyPath: m_Name
       value: Akira_Motorbike_NPC
+      objectReference: {fileID: 0}
+    - target: {fileID: 967379198652625487, guid: 35ad766ecf068bd408600c7b31d2909a, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 967379198652625487, guid: 35ad766ecf068bd408600c7b31d2909a, type: 3}
       propertyPath: m_TagString
@@ -340,6 +348,7 @@ PrefabInstance:
     - {fileID: 5065916409023086038, guid: 35ad766ecf068bd408600c7b31d2909a, type: 3}
     - {fileID: 1739485909161619130, guid: 35ad766ecf068bd408600c7b31d2909a, type: 3}
     - {fileID: 8008496060628532793, guid: 35ad766ecf068bd408600c7b31d2909a, type: 3}
+    - {fileID: 5252457355468045010, guid: 35ad766ecf068bd408600c7b31d2909a, type: 3}
     m_RemovedGameObjects:
     - {fileID: 512098314192016328, guid: 35ad766ecf068bd408600c7b31d2909a, type: 3}
     - {fileID: 5235929171641934517, guid: 35ad766ecf068bd408600c7b31d2909a, type: 3}
@@ -419,6 +428,7 @@ MonoBehaviour:
   mMinSkidSpeed: 10
   mFrontWheelTransform: {fileID: 652529997470384657}
   mRearWheelTransform: {fileID: 3317744905368112415}
+  bCanRespawn: 1
 --- !u!114 &7401581384925995402
 MonoBehaviour:
   m_ObjectHideFlags: 0

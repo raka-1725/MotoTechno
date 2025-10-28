@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -11,6 +12,8 @@ public class MotorCycleController : MonoBehaviour
     TrailRenderer mSkidMarks;
     MotorCycleUI mMotoUI;
     CountDownStart mCountDownStart;
+    NPC_Path mNPC_path;
+    RaceManager mRaceManager;
 
     private Vector2 mMoveInput;
     private float mHorizontalSteer; //horizontal input
@@ -80,6 +83,11 @@ public class MotorCycleController : MonoBehaviour
     [Header("WheelRotation")]
     [SerializeField] private Transform mFrontWheelTransform;
     [SerializeField] private Transform mRearWheelTransform;
+    private float stuckTimer;
+
+
+    private Vector3 lastRespawnPosition;
+    private Quaternion lastRespawnRotation;
 
     private void Awake()
     {
@@ -119,6 +127,18 @@ public class MotorCycleController : MonoBehaviour
         //Start
         mCountDownStart.onRaceStart += RaceStart;
 
+        //Respawn
+        mNPC_path = FindAnyObjectByType<NPC_Path>();
+
+        //Finish
+        mRaceManager = FindAnyObjectByType<RaceManager>();
+        mRaceManager.onRaceFinished += RaceFinish;
+
+    }
+
+    private void RaceFinish(RaceManager manager)
+    {
+        bCanDrive = false;
     }
 
     private void RaceStart(CountDownStart sender) 
@@ -140,6 +160,7 @@ public class MotorCycleController : MonoBehaviour
         HandleSteer();
         RotateTire();
         BodyTilt();
+        CheckStuck();
     }
     private void LateUpdate()
     {
@@ -357,6 +378,58 @@ public class MotorCycleController : MonoBehaviour
         if (Speed > mMinSkidSpeed) { mSkidMarks.emitting = true; }
         else { mSkidMarks.emitting = false; }
     }
+
+    private void CheckStuck()
+    {
+        if (Speed < 1f)
+        {
+            stuckTimer += Time.fixedDeltaTime;
+        }
+        else
+        {
+            stuckTimer = 0f;
+
+            UpdateRespawnPoint();
+        }
+
+        if (stuckTimer > 10f)
+        {
+            RespawnAtLastPosition();
+        }
+    }
+
+    private void UpdateRespawnPoint()
+    {
+        Transform closestPoint = mNPC_path.waypoints[0];
+        float closestDistance = Vector3.Distance(transform.position, closestPoint.position);
+
+        foreach (Transform point in mNPC_path.waypoints)
+        {
+            float distance = Vector3.Distance(transform.position, point.position);
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestPoint = point;
+            }
+        }
+
+        lastRespawnPosition = closestPoint.position;
+        lastRespawnRotation = closestPoint.rotation;
+    }
+
+    private void RespawnAtLastPosition()
+    {
+
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        transform.position = lastRespawnPosition;
+        transform.rotation = lastRespawnRotation;
+        rb.AddForce(transform.forward * 5f, ForceMode.VelocityChange);
+
+        stuckTimer = 0f;
+    }
+
+
     private void OnEnable()
     {
         mInputAction.Enable();
