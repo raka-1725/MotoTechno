@@ -2004,7 +2004,7 @@ MonoBehaviour:
   mHueTexture: {fileID: 0}
   mSatValTexture: {fileID: 0}
   mOutputTexture: {fileID: 0}
-  changethiscolor: {r: 0, g: 0, b: 0, a: 0}
+  selectedColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!4 &609250515 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4690062549984711593, guid: fd4278702b9c6ba4390ae8f88c901390, type: 3}
@@ -5162,7 +5162,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1580118094}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8014638630016472643}
+        m_TargetAssemblyTypeName: StatusUpgradeColor, Assembly-CSharp
+        m_MethodName: SetColorSelection
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1580118094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7071,25 +7083,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3689029269554435522
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8014638630016472642}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61e6e396f57089f4d9c7587ff8321cc7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  NameOfComponent: 
-  currentLevel: 0
-  price: 0
-  Thumbnail: {fileID: 0}
-  mNameText: {fileID: 0}
-  mCurrentLevel: {fileID: 0}
-  mPrice: {fileID: 1086822687412265369}
 --- !u!114 &4030761815728389867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7340,7 +7333,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3280816328214582882}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8014638630016472643}
+        m_TargetAssemblyTypeName: StatusUpgradeColor, Assembly-CSharp
+        m_MethodName: SetColorSelection
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1001 &7693753138143282545
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7456,7 +7461,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4302934460279351345}
-  - component: {fileID: 3689029269554435522}
+  - component: {fileID: 8014638630016472643}
   m_Layer: 5
   m_Name: Upgrade Customize
   m_TagString: Untagged
@@ -7464,6 +7469,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8014638630016472643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8014638630016472642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 599b28dc5f8ee1a46a94bd6c06fbfabc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  priceDefaultColor: 0
+  priceCustomColor: 0
+  bDefaultSelected: 0
+  buttonSelectedcolor: {r: 0, g: 0, b: 0, a: 0}
+  mDefaultBodyColor: {r: 0, g: 0, b: 0, a: 0}
+  customedColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!224 &8262994015589108813
 RectTransform:
   m_ObjectHideFlags: 0
