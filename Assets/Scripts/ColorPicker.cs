@@ -36,7 +36,7 @@ public class ColorPicker : MonoBehaviour
 
         for (int i = 0; i < mHueTexture.height; i++)
         {
-            mHueTexture.SetPixel(0, i, Color.HSVToRGB((float)i / mHueTexture.height, 1, 0.05f));
+            mHueTexture.SetPixel(0, i, Color.HSVToRGB((float)i / mHueTexture.height, 1, 1));
         }
 
         mHueTexture.Apply();
@@ -83,7 +83,12 @@ public class ColorPicker : MonoBehaviour
 
         mOutputImage.texture = mOutputTexture;
     }
-
+    public void OnHueChanged(float newHue)
+    {
+        currentHue = newHue;
+        UpdateSVImage();
+        UpdateOutputImage();
+    }
     private void UpdateOutputImage() 
     {
         Color currentColor = Color.HSVToRGB(currentHue, currentSat, currentVal);

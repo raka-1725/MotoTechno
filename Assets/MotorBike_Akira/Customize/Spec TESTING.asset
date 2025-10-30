@@ -26,4 +26,4 @@ MonoBehaviour:
   DefaultBodyColor: 0
   RandomBodyColor: 0
   mDefaultBodyColor: {r: 0.87058824, g: 0.101960786, b: 0.101960786, a: 0}
-  mCustomBodyColor: {r: 0.22844425, g: 0.5849056, b: 0.23163788, a: 0}
+  mCustomBodyColor: {r: 0.55497855, g: 0.17621931, b: 0.6792453, a: 0}

@@ -45,8 +45,6 @@ public class ColorPickSVImage : MonoBehaviour, IDragHandler, IPointerClickHandle
 
         mColorPicker.SetSV(xNormal, yNormal);
 
-        Debug.Log($"HEX {pickerImage.color}");
-
     }
     public void OnDrag(PointerEventData eventData)
     {

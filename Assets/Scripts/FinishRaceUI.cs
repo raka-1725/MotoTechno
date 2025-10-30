@@ -27,17 +27,21 @@ public class FinishRaceUI : MonoBehaviour
     {
         StartCoroutine(ShowPosition(mPosition));
         mFinishUI.SetActive(true);
-
+        ResetUI();
     }
 
     private IEnumerator ShowPosition(int finalPos)
     {
-        yield return new WaitForSeconds(1f);
         Color bgColor = mBGFinalPosition.color;
         bgColor.a = 0f;
         mBGFinalPosition.color = bgColor;
 
-        mPositionText.gameObject.SetActive(false);
+        Color textColor = mPositionText.color;
+        textColor.a = 0f;
+        mPositionText.color = textColor;
+
+        mPositionText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(1f);
         float elapsed = 0f;
         while (elapsed < fadeDuration)
         {
@@ -65,5 +69,24 @@ public class FinishRaceUI : MonoBehaviour
             mPositionText.text = $"{finalPos} th";
         }
         mPositionText.gameObject.SetActive(true);
+    }
+    public void ResetUI()
+    {
+        if (mFinishUI != null) mFinishUI.SetActive(false);
+
+        if (mBGFinalPosition != null)
+        {
+            Color bgColor = mBGFinalPosition.color;
+            bgColor.a = 0f;
+            mBGFinalPosition.color = bgColor;
+        }
+
+        if (mPositionText != null)
+        {
+            Color textColor = mPositionText.color;
+            textColor.a = 0f;
+            mPositionText.color = textColor;
+            mPositionText.gameObject.SetActive(false);
+        }
     }
 }
