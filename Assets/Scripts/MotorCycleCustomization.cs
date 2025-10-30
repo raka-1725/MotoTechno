@@ -3,7 +3,7 @@ using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 
-[CreateAssetMenu(fileName = "MotorCycleCusomize", menuName = "ScriptableObjects")  ]
+[CreateAssetMenu(fileName = "MotorCycleCusomize", menuName = "ScriptableObject_motorcycle")  ]
 public class MotorCycleCusomization : ScriptableObject
 {
     //[SerializeField] private GameObject mMotorCyclePrefab;

@@ -19,7 +19,7 @@ public class ColorPicker : MonoBehaviour
     [SerializeField] private Texture2D mSatValTexture;
     [SerializeField] private Texture2D mOutputTexture;
 
-    [SerializeField] Color changethiscolor;
+    public Color selectedColor;
 
     private void Start()
     {
@@ -100,7 +100,7 @@ public class ColorPicker : MonoBehaviour
 
         mOutputTexture.Apply();
         mHexInput.text = ColorUtility.ToHtmlStringRGB(currentColor);
-        changethiscolor = currentColor;
+        selectedColor = currentColor;
     }
 
     public void SetSV(float S, float V) 
