@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
@@ -101,6 +102,8 @@ public class MotorCycleController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         mCountDownStart = FindAnyObjectByType<CountDownStart>();
 
+        GetSpecScript();
+
         //visual
         if (bSkidOn) 
         {
@@ -134,6 +137,42 @@ public class MotorCycleController : MonoBehaviour
         mRaceManager = FindAnyObjectByType<RaceManager>();
         mRaceManager.onRaceFinished += RaceFinish;
 
+    }
+
+    private void GetSpecScript()
+    {
+#if UNITY_EDITOR
+        string[] guids = AssetDatabase.FindAssets("t:MotorCycleCusomization", new[] { "Assets/GeneratedSpecs" });
+        string newestPath = null;
+        DateTime newestTime = DateTime.MinValue;
+
+        foreach (string guid in guids)
+        {
+            string path = AssetDatabase.GUIDToAssetPath(guid);
+            DateTime modified = System.IO.File.GetLastWriteTime(path);
+            if (modified > newestTime)
+            {
+                newestTime = modified;
+                newestPath = path;
+            }
+        }
+
+        if (!string.IsNullOrEmpty(newestPath))
+        {
+            mMotoSpecCustom = AssetDatabase.LoadAssetAtPath<MotorCycleCusomization>(newestPath);
+
+        }
+
+
+#else
+    string jsonPath = System.IO.Path.Combine(Application.persistentDataPath, "MotorcycleSpec.json");
+    if (System.IO.File.Exists(jsonPath))
+    {
+        string json = System.IO.File.ReadAllText(jsonPath);
+        mMotoSpecCustom = ScriptableObject.CreateInstance<MotorCycleCusomization>();
+        JsonUtility.FromJsonOverwrite(json, mMotoSpecCustom);
+    }
+#endif
     }
 
     private void RaceFinish(RaceManager manager)

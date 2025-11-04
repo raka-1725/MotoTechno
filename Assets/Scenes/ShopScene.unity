@@ -172,7 +172,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &28888877
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1743,6 +1743,10 @@ PrefabInstance:
       value: Upgrade Customize front wing
       objectReference: {fileID: 0}
     - target: {fileID: 7012326847979738988, guid: a52c6f3b5fd964b42a5a679d16324abc, type: 3}
+      propertyPath: Thumbnail
+      value: 
+      objectReference: {fileID: 21300000, guid: acd43d159c0b0754a909037400f8c83d, type: 3}
+    - target: {fileID: 7012326847979738988, guid: a52c6f3b5fd964b42a5a679d16324abc, type: 3}
       propertyPath: NameOfComponent
       value: Front Winglet
       objectReference: {fileID: 0}
@@ -2525,6 +2529,10 @@ PrefabInstance:
       value: Upgrade stats motor
       objectReference: {fileID: 0}
     - target: {fileID: 7012326847979738988, guid: b7cb4cba249f0b44daf24270d50e7a0b, type: 3}
+      propertyPath: Thumbnail
+      value: 
+      objectReference: {fileID: 21300000, guid: 45f37595af0935848a26e6869c330221, type: 3}
+    - target: {fileID: 7012326847979738988, guid: b7cb4cba249f0b44daf24270d50e7a0b, type: 3}
       propertyPath: NameOfComponent
       value: Motor
       objectReference: {fileID: 0}
@@ -2542,7 +2550,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7626215507275229855, guid: b7cb4cba249f0b44daf24270d50e7a0b, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7626215507275229855, guid: b7cb4cba249f0b44daf24270d50e7a0b, type: 3}
       propertyPath: m_AnchorMin.x
@@ -2550,7 +2558,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7626215507275229855, guid: b7cb4cba249f0b44daf24270d50e7a0b, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7626215507275229855, guid: b7cb4cba249f0b44daf24270d50e7a0b, type: 3}
       propertyPath: m_SizeDelta.x
@@ -2590,11 +2598,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7626215507275229855, guid: b7cb4cba249f0b44daf24270d50e7a0b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 179.25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7626215507275229855, guid: b7cb4cba249f0b44daf24270d50e7a0b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -186.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7626215507275229855, guid: b7cb4cba249f0b44daf24270d50e7a0b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -5371,6 +5379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mCustomSpec: {fileID: 0}
+  mDefautSpec: {fileID: 0}
   mCustomPrices: {fileID: 11400000, guid: 9d18029a64cc40347b2d6f595bb051eb, type: 2}
   mDisplaySpec: {fileID: 11400000, guid: 2d30bf0aed5ca0d4d9ece730205273b6, type: 2}
   mMotoDisplay: {fileID: 323375008}
@@ -5931,6 +5940,10 @@ PrefabInstance:
       value: Upgrade stats brake
       objectReference: {fileID: 0}
     - target: {fileID: 7012326847979738988, guid: b7cb4cba249f0b44daf24270d50e7a0b, type: 3}
+      propertyPath: Thumbnail
+      value: 
+      objectReference: {fileID: 21300000, guid: 2b2647f28ecde8145a826062264588a9, type: 3}
+    - target: {fileID: 7012326847979738988, guid: b7cb4cba249f0b44daf24270d50e7a0b, type: 3}
       propertyPath: NameOfComponent
       value: Brake
       objectReference: {fileID: 0}
@@ -5948,7 +5961,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7626215507275229855, guid: b7cb4cba249f0b44daf24270d50e7a0b, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7626215507275229855, guid: b7cb4cba249f0b44daf24270d50e7a0b, type: 3}
       propertyPath: m_AnchorMin.x
@@ -5956,7 +5969,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7626215507275229855, guid: b7cb4cba249f0b44daf24270d50e7a0b, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7626215507275229855, guid: b7cb4cba249f0b44daf24270d50e7a0b, type: 3}
       propertyPath: m_SizeDelta.x
@@ -5996,11 +6009,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7626215507275229855, guid: b7cb4cba249f0b44daf24270d50e7a0b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 179.25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7626215507275229855, guid: b7cb4cba249f0b44daf24270d50e7a0b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -348
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7626215507275229855, guid: b7cb4cba249f0b44daf24270d50e7a0b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -7328,6 +7341,10 @@ PrefabInstance:
       value: Upgrade Customize rear wing
       objectReference: {fileID: 0}
     - target: {fileID: 7012326847979738988, guid: a52c6f3b5fd964b42a5a679d16324abc, type: 3}
+      propertyPath: Thumbnail
+      value: 
+      objectReference: {fileID: 21300000, guid: 8d1a5c1e32023e24684cf7ca5f98feec, type: 3}
+    - target: {fileID: 7012326847979738988, guid: a52c6f3b5fd964b42a5a679d16324abc, type: 3}
       propertyPath: NameOfComponent
       value: Rear Wing
       objectReference: {fileID: 0}
@@ -8417,6 +8434,10 @@ PrefabInstance:
       value: Upgrade stats battery
       objectReference: {fileID: 0}
     - target: {fileID: 7012326847979738988, guid: b7cb4cba249f0b44daf24270d50e7a0b, type: 3}
+      propertyPath: Thumbnail
+      value: 
+      objectReference: {fileID: 21300000, guid: e7dd6bd3dccf6524b912ac2fd264d02a, type: 3}
+    - target: {fileID: 7012326847979738988, guid: b7cb4cba249f0b44daf24270d50e7a0b, type: 3}
       propertyPath: NameOfComponent
       value: Battery
       objectReference: {fileID: 0}
@@ -8434,7 +8455,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7626215507275229855, guid: b7cb4cba249f0b44daf24270d50e7a0b, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7626215507275229855, guid: b7cb4cba249f0b44daf24270d50e7a0b, type: 3}
       propertyPath: m_AnchorMin.x
@@ -8442,7 +8463,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7626215507275229855, guid: b7cb4cba249f0b44daf24270d50e7a0b, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7626215507275229855, guid: b7cb4cba249f0b44daf24270d50e7a0b, type: 3}
       propertyPath: m_SizeDelta.x
@@ -8482,11 +8503,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7626215507275229855, guid: b7cb4cba249f0b44daf24270d50e7a0b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 179.25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7626215507275229855, guid: b7cb4cba249f0b44daf24270d50e7a0b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7626215507275229855, guid: b7cb4cba249f0b44daf24270d50e7a0b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

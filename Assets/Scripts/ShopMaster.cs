@@ -249,10 +249,17 @@ public class ShopMaster : MonoBehaviour
             System.IO.Directory.CreateDirectory(assetPath);
         }
 
+
+        //Unity Editor
+#if UNITY_EDITOR
         string fileName = $"MotorcycleSpec_{DateTime.Now:yyyyMMdd_HHmmss}.asset";
         UnityEditor.AssetDatabase.CreateAsset(newSpec, assetPath + fileName);
         UnityEditor.AssetDatabase.SaveAssets();
         UnityEditor.AssetDatabase.Refresh();
+#endif
+        string jsonPath = System.IO.Path.Combine(Application.persistentDataPath, "MotorcycleSpec.json");
+        string jsonData = JsonUtility.ToJson(newSpec, true);
+        System.IO.File.WriteAllText(jsonPath, jsonData);
     }
 
 

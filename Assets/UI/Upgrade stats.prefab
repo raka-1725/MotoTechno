@@ -874,6 +874,7 @@ MonoBehaviour:
   currentLevel: 0
   price: 0
   maxLevel: 5
+  ThumbnailImage: {fileID: 6887055602313034927}
   Thumbnail: {fileID: 0}
   mNameText: {fileID: 3262370788368700773}
   mCurrentLevel: {fileID: 607031336043594502}

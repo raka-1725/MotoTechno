@@ -12,7 +12,8 @@ public class StatusUpgrade : MonoBehaviour
     private int purchasedLevel;
     private bool bCanPurchaseUpgrade = true;
 
-    public Image Thumbnail;
+    public Image ThumbnailImage;
+    public Sprite Thumbnail;
 
     [SerializeField] private TextMeshProUGUI mNameText;
     [SerializeField] private TextMeshProUGUI mCurrentLevel;
@@ -29,6 +30,7 @@ public class StatusUpgrade : MonoBehaviour
     {
         mNameText.SetText(NameOfComponent);
         mPurchaseButton.onClick.AddListener(PurchaceUpgrade);
+        ThumbnailImage.sprite = Thumbnail;
     }
 
     public void SetUpgrade(int currentlevel, int pricevalue) 
