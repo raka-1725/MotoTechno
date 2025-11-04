@@ -34,10 +34,17 @@ public class StartManager : MonoBehaviour
 
         mPositionManager = GetComponent<PositionManager>();
         mCountDownStart = GetComponent<CountDownStart>();
+
     }
 
     private void Start()
     {
+        if (RaceConfig.bCanLoad == false) { return; }
+        NumberOfNPC = RaceConfig.NumberOfNPC;
+        StartFromFirst = RaceConfig.StartFromFirst;
+        StartFromLast = RaceConfig.StartFromLast;
+        PlayerStartGrid = RaceConfig.PlayerStartGrid;
+        Debug.Log(NumberOfNPC);
         CreateGrid();
     }
 

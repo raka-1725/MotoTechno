@@ -12,10 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a472e28adbd04a64f802148490d068af, type: 3}
   m_Name: ShopPrice
   m_EditorClassIdentifier: 
-  motorUpgradePrice: 10
-  brakeUpgradePrice: 10
-  batteryUpgradePrice: 10
+  motorUpgradePrice: 25
+  brakeUpgradePrice: 30
+  batteryUpgradePrice: 20
   frontWingletPrice: 50
-  rearWingPrice: 70
+  rearWingPrice: 100
   defaultPrice: 10
-  maxUpgradelevel: 3

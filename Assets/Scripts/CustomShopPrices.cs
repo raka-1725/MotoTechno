@@ -11,6 +11,4 @@ public class CustomShopPrices : ScriptableObject
     public int rearWingPrice = 70;
 
     public int defaultPrice = 10;
-
-    public int maxUpgradelevel = 3;
 }

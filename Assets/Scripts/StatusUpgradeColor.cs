@@ -1,5 +1,9 @@
+using System;
+using System.Diagnostics;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 public class StatusUpgradeColor : MonoBehaviour
 {
@@ -16,15 +20,35 @@ public class StatusUpgradeColor : MonoBehaviour
     public Color customedColor;
     private ShopMaster mShopMaster;
 
+    [SerializeField] private Button mSelectDefaultColorButton;
+    [SerializeField] private Button mSelectCustomColorButton;
+
+    [SerializeField] private TextMeshProUGUI mDefaultPrice;
+    [SerializeField] private TextMeshProUGUI mCustomPrice;
+
+    public Action<StatusUpgradeColor, bool, int, Color> upgradePurchased;
+
+
     private void Awake()
     {
         mColorPicker = FindAnyObjectByType<ColorPicker>();
         mShopMaster = FindAnyObjectByType<ShopMaster>();
+
+        mDefaultPrice.SetText($"Price : {priceDefaultColor}");
+        mCustomPrice.SetText($"Price : {priceCustomColor}");
     }
 
-    public void SetColorSelection(bool isDefaultcolor) 
+    private void Update()
     {
-        if (!isDefaultcolor) 
+        if (PlayerCredits.Instance.credit <= priceCustomColor)
+        {
+            mSelectCustomColorButton.interactable = false;
+        }
+    }
+
+    public void SelectColorOption(bool isDefalut) 
+    {
+        if (!isDefalut)
         {
             customedColor = mColorPicker.selectedColor;
             bDefaultSelected = false;
@@ -36,12 +60,19 @@ public class StatusUpgradeColor : MonoBehaviour
             mColorPicker.currentSat = s;
             mColorPicker.currentVal = v;
             bDefaultSelected = true;
+            ApplyColor();
         }
-
     }
 
     public void ApplyColor() 
     {
+        int pricesubtract = bDefaultSelected ? priceDefaultColor : priceCustomColor;
         mShopMaster.SetBodyColor(!bDefaultSelected, bDefaultSelected ? mDefaultBodyColor : customedColor);
+        upgradePurchased.Invoke(this, bDefaultSelected, pricesubtract, customedColor);
     }
+
+ 
+
+
+
 }

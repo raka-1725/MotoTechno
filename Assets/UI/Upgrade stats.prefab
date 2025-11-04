@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 6957295496849057611}
   - component: {fileID: 607031336043594502}
   m_Layer: 5
-  m_Name: current setting int
+  m_Name: Level int text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -691,7 +691,7 @@ GameObject:
   - component: {fileID: 4772784872269134678}
   - component: {fileID: 6735117811284239159}
   m_Layer: 5
-  m_Name: current setting int (1)
+  m_Name: Price Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -873,10 +873,12 @@ MonoBehaviour:
   NameOfComponent: 
   currentLevel: 0
   price: 0
+  maxLevel: 5
   Thumbnail: {fileID: 0}
   mNameText: {fileID: 3262370788368700773}
   mCurrentLevel: {fileID: 607031336043594502}
   mPrice: {fileID: 6735117811284239159}
+  mPurchaseButton: {fileID: 4094332535081259378}
 --- !u!1 &6153312185217185632
 GameObject:
   m_ObjectHideFlags: 0

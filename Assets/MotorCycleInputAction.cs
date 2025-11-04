@@ -117,6 +117,15 @@ public partial class @MotorCycleInputAction: IInputActionCollection2, IDisposabl
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PauseMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""2f13ef01-0786-4709-b492-c66013efb16c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -273,6 +282,28 @@ public partial class @MotorCycleInputAction: IInputActionCollection2, IDisposabl
                     ""action"": ""MotoOverTake"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b6f53525-270e-4881-917e-a2f594255cb9"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PauseMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1d52939d-b81e-4b1c-89db-24822fe11a36"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PauseMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -312,6 +343,7 @@ public partial class @MotorCycleInputAction: IInputActionCollection2, IDisposabl
         m_MotorCycle_MotoInput = m_MotorCycle.FindAction("MotoInput", throwIfNotFound: true);
         m_MotorCycle_MotoRegen = m_MotorCycle.FindAction("MotoRegen", throwIfNotFound: true);
         m_MotorCycle_MotoOverTake = m_MotorCycle.FindAction("MotoOverTake", throwIfNotFound: true);
+        m_MotorCycle_PauseMenu = m_MotorCycle.FindAction("PauseMenu", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Newaction = m_UI.FindAction("New action", throwIfNotFound: true);
@@ -399,6 +431,7 @@ public partial class @MotorCycleInputAction: IInputActionCollection2, IDisposabl
     private readonly InputAction m_MotorCycle_MotoInput;
     private readonly InputAction m_MotorCycle_MotoRegen;
     private readonly InputAction m_MotorCycle_MotoOverTake;
+    private readonly InputAction m_MotorCycle_PauseMenu;
     /// <summary>
     /// Provides access to input actions defined in input action map "MotorCycle".
     /// </summary>
@@ -422,6 +455,10 @@ public partial class @MotorCycleInputAction: IInputActionCollection2, IDisposabl
         /// Provides access to the underlying input action "MotorCycle/MotoOverTake".
         /// </summary>
         public InputAction @MotoOverTake => m_Wrapper.m_MotorCycle_MotoOverTake;
+        /// <summary>
+        /// Provides access to the underlying input action "MotorCycle/PauseMenu".
+        /// </summary>
+        public InputAction @PauseMenu => m_Wrapper.m_MotorCycle_PauseMenu;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -457,6 +494,9 @@ public partial class @MotorCycleInputAction: IInputActionCollection2, IDisposabl
             @MotoOverTake.started += instance.OnMotoOverTake;
             @MotoOverTake.performed += instance.OnMotoOverTake;
             @MotoOverTake.canceled += instance.OnMotoOverTake;
+            @PauseMenu.started += instance.OnPauseMenu;
+            @PauseMenu.performed += instance.OnPauseMenu;
+            @PauseMenu.canceled += instance.OnPauseMenu;
         }
 
         /// <summary>
@@ -477,6 +517,9 @@ public partial class @MotorCycleInputAction: IInputActionCollection2, IDisposabl
             @MotoOverTake.started -= instance.OnMotoOverTake;
             @MotoOverTake.performed -= instance.OnMotoOverTake;
             @MotoOverTake.canceled -= instance.OnMotoOverTake;
+            @PauseMenu.started -= instance.OnPauseMenu;
+            @PauseMenu.performed -= instance.OnPauseMenu;
+            @PauseMenu.canceled -= instance.OnPauseMenu;
         }
 
         /// <summary>
@@ -634,6 +677,13 @@ public partial class @MotorCycleInputAction: IInputActionCollection2, IDisposabl
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnMotoOverTake(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "PauseMenu" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnPauseMenu(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.
