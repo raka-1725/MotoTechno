@@ -9,6 +9,7 @@ public class ShopMaster : MonoBehaviour
     
     [Header("GeneratingSpec")]
     [SerializeField] MotorCycleCusomization mCustomSpec;
+    [SerializeField] MotorCycleController mDefautSpec;
 
     [Header("CustomPriceSheet")]
     [SerializeField] CustomShopPrices mCustomPrices;
@@ -222,30 +223,37 @@ public class ShopMaster : MonoBehaviour
 
     //Generating Spec inPROGRESS
 
-    //public void GenerateSpecSheet()
-    //{
-    //    MotorCycleCusomization newSpec = ScriptableObject.CreateInstance<MotorCycleCusomization>();
+    public void GenerateSpecSheet()
+    {
+        //FIX THIS LATER
 
-    //    newSpec.EnergyUseIndex = mCustomSpec.EnergyUseIndex;
-    //    newSpec.MaxPower = mCustomSpec.MaxPower;
-    //    newSpec.BrakeTorque = mCustomSpec.BrakeTorque;
-    //    newSpec.FrontWinglet = mCustomSpec.FrontWinglet;
-    //    newSpec.RearWing = mCustomSpec.RearWing;
-    //    newSpec.DefaultBodyColor = mCustomSpec.DefaultBodyColor;
-    //    newSpec.mCustomBodyColor = mCustomSpec.mCustomBodyColor;
+        if (mCustomSpec == mDefautSpec) 
+        {
+            return;
+        }
+
+        MotorCycleCusomization newSpec = ScriptableObject.CreateInstance<MotorCycleCusomization>();
+
+        newSpec.EnergyUseIndex = mCustomSpec.EnergyUseIndex;
+        newSpec.MaxPower = mCustomSpec.MaxPower;
+        newSpec.BrakeTorque = mCustomSpec.BrakeTorque;
+        newSpec.FrontWinglet = mCustomSpec.FrontWinglet;
+        newSpec.RearWing = mCustomSpec.RearWing;
+        newSpec.DefaultBodyColor = mCustomSpec.DefaultBodyColor;
+        newSpec.mCustomBodyColor = mCustomSpec.mCustomBodyColor;
 
 
-    //    string assetPath = "Assets/GeneratedSpecs/";
-    //    if (!System.IO.Directory.Exists(assetPath))
-    //    {
-    //        System.IO.Directory.CreateDirectory(assetPath);
-    //    }
+        string assetPath = "Assets/GeneratedSpecs/";
+        if (!System.IO.Directory.Exists(assetPath))
+        {
+            System.IO.Directory.CreateDirectory(assetPath);
+        }
 
-    //    string fileName = $"MotorcycleSpec_{DateTime.Now:yyyyMMdd_HHmmss}.asset";
-    //    UnityEditor.AssetDatabase.CreateAsset(newSpec, assetPath + fileName);
-    //    UnityEditor.AssetDatabase.SaveAssets();
-    //    UnityEditor.AssetDatabase.Refresh();
-    //}
+        string fileName = $"MotorcycleSpec_{DateTime.Now:yyyyMMdd_HHmmss}.asset";
+        UnityEditor.AssetDatabase.CreateAsset(newSpec, assetPath + fileName);
+        UnityEditor.AssetDatabase.SaveAssets();
+        UnityEditor.AssetDatabase.Refresh();
+    }
 
 
 

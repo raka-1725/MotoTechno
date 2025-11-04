@@ -633,6 +633,18 @@ MonoBehaviour:
           m_StringArgument: MainScene
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1467533316}
+        m_TargetAssemblyTypeName: ShopMaster, Assembly-CSharp
+        m_MethodName: GenerateSpecSheet
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &279444610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -724,7 +736,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Credits : '
+  m_text: 'Credits : 5000'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0af324e52d4e0af4584305d7234168b1, type: 2}
   m_sharedMaterial: {fileID: 6151821033011890319, guid: 0af324e52d4e0af4584305d7234168b1, type: 2}
@@ -751,15 +763,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 35
+  m_fontSizeBase: 35
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -819,8 +831,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 748, y: -56}
-  m_SizeDelta: {x: 338.82, y: 50}
+  m_AnchoredPosition: {x: 777, y: -62}
+  m_SizeDelta: {x: 330.9, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &293543936
 GameObject:
