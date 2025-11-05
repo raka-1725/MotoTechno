@@ -395,7 +395,8 @@ MonoBehaviour:
   mBattSlider: {fileID: 0}
   mPowerSlider: {fileID: 0}
   mRegenSlider: {fileID: 0}
-  OvertakeIndicator: {fileID: 0}
+  OvertakeIndicatorUI: {fileID: 0}
+  RegenIndicatorUI: {fileID: 0}
 --- !u!1 &2660300126448146827
 GameObject:
   m_ObjectHideFlags: 0
@@ -2462,6 +2463,8 @@ MonoBehaviour:
   Speed: 0
   rawSpeed: 0
   mZtiltAngle: 20
+  VehicleDash: {fileID: 7940854739836418655}
+  TPdash: {fileID: 0}
   bSkidOn: 1
   mSkidWidth: 0.05
   mMinSkidSpeed: 15
@@ -2484,7 +2487,8 @@ MonoBehaviour:
   mBattSlider: {fileID: 1739463608043482244}
   mPowerSlider: {fileID: 6734255749627455178}
   mRegenSlider: {fileID: 1880305608855296524}
-  OvertakeIndicator: {fileID: 5009261959058986710}
+  OvertakeIndicatorUI: {fileID: 5009261959058986710}
+  RegenIndicatorUI: {fileID: 6128369336734885295}
 --- !u!114 &8008496060628532793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2888,6 +2892,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2761044896746945079, guid: 942aec6d30b9dc549bd164fa4f8ce8af, type: 3}
   m_PrefabInstance: {fileID: 7193737903595793633}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6128369336734885295 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3952223079243811150, guid: 942aec6d30b9dc549bd164fa4f8ce8af, type: 3}
+  m_PrefabInstance: {fileID: 7193737903595793633}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &6734255749627455178 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4513076794432817707, guid: 942aec6d30b9dc549bd164fa4f8ce8af, type: 3}
@@ -2899,6 +2908,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &7940854739836418655 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1001734061849974462, guid: 942aec6d30b9dc549bd164fa4f8ce8af, type: 3}
+  m_PrefabInstance: {fileID: 7193737903595793633}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &7995841168232977571 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 946782520399083586, guid: 942aec6d30b9dc549bd164fa4f8ce8af, type: 3}

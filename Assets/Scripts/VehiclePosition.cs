@@ -9,6 +9,7 @@ public class VehiclePosition : MonoBehaviour
     PositionManager mPositionManager;
     StartManager mStartManager;
     CountDownStart mCountDownStart;
+    RaceManager mRaceManager;
     public int vehicleIndex;
     public int checkPointPassed;
 
@@ -25,11 +26,16 @@ public class VehiclePosition : MonoBehaviour
         mCountDownStart = FindAnyObjectByType<CountDownStart>();
         if (bIsPlayer) 
         { 
+            mRaceManager = FindAnyObjectByType<RaceManager>();
             mDisplayRaceStats = FindAnyObjectByType<DisplayRaceStats>();
             SetInitialPosition(mStartManager.PlayerStartGrid + 1);
             mDisplayRaceStats.UpdatePositionUI(position);
         }
-        else { mDisplayRaceStats = null; }
+        else 
+        { 
+            mDisplayRaceStats = null;
+            mRaceManager = null;
+        }
 
         mCountDownStart.onRaceStart += RaceStart;
     }
@@ -60,6 +66,7 @@ public class VehiclePosition : MonoBehaviour
     {
         if (!bStared) return;
         mDisplayRaceStats.UpdatePositionUI(position);
+        mRaceManager.position = position;
     }
 
     public void UpdateDistanceAlongTrack(NPC_Path path)

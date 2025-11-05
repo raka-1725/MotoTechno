@@ -37,5 +37,12 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = bPaused ? 0f : 1f;
     }
 
+    public void Resume() 
+    {
+        bPaused = false;
+        mPauseScreen.SetActive(bPaused);
+        Time.timeScale = 1.0f;
+    }
+
     
 }

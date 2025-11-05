@@ -405,7 +405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d1e1637886d1544b7ec087fe08bc6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  credit: 500
+  credit: 0
   maxCredits: 999999
 --- !u!4 &469654034
 Transform:

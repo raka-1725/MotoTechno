@@ -15,7 +15,10 @@ public class MotorCycleUI : MonoBehaviour
     [SerializeField] private Slider mRegenSlider;
 
     [Header("Overtake")]
-    [SerializeField] private GameObject OvertakeIndicator;
+    [SerializeField] private GameObject OvertakeIndicatorUI;
+
+    [Header("Regen")]
+    [SerializeField] private GameObject RegenIndicatorUI;
     public void Speed(float speed) 
     {
         mSpeedText.text = speed.ToString("0.00");
@@ -30,12 +33,18 @@ public class MotorCycleUI : MonoBehaviour
     public void PowerMeter(float energyuse, float regen) 
     {
         mPowerSlider.value = energyuse;
-        mRegenSlider.value = regen;
+        mRegenSlider.value = Mathf.Abs(regen);
+
     }
 
     public void OverTakeIndicator(bool overtake) 
     {
-        OvertakeIndicator.SetActive(overtake);
+        OvertakeIndicatorUI.SetActive(overtake);
+    }
+
+    public void RegenIndicator(bool regen) 
+    {
+        RegenIndicatorUI.SetActive(regen);
     }
 
 }

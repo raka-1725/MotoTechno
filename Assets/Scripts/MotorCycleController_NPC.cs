@@ -13,7 +13,6 @@ public class MotorCycleController_NPC : Unity.MLAgents.Agent
     TrailRenderer mSkidMarks;
     NPC_Path mPath;
     CountDownStart mCountDownStart;
-    RaceManager mRaceManager;
 
     private Vector2 mMoveInput;
     private float mHorizontalSteer; //horizontal input
@@ -107,7 +106,6 @@ public class MotorCycleController_NPC : Unity.MLAgents.Agent
         rb = GetComponent<Rigidbody>();
         mPath = FindAnyObjectByType<NPC_Path>();
         mCountDownStart = FindAnyObjectByType<CountDownStart>();
-        mRaceManager = FindAnyObjectByType<RaceManager>();
 
         //visual
         if (bSkidOn) 
@@ -128,14 +126,8 @@ public class MotorCycleController_NPC : Unity.MLAgents.Agent
         mExtraGripR = mMotoSpecCustom.RearWingGripMultiplier;
 
 
-        mRaceManager.onRaceFinished += RaceFinish;
         mCountDownStart.onRaceStart += RaceStart;
 
-    }
-
-    private void RaceFinish(RaceManager manager)
-    {
-        bCanDrive = false;
     }
 
     private void Start()

@@ -15,6 +15,7 @@ public class MotorCycleController : MonoBehaviour
     CountDownStart mCountDownStart;
     NPC_Path mNPC_path;
     RaceManager mRaceManager;
+    CameraSwitcher mCameraSwitcher;
 
     private Vector2 mMoveInput;
     private float mHorizontalSteer; //horizontal input
@@ -77,6 +78,12 @@ public class MotorCycleController : MonoBehaviour
     public float rawSpeed;
     [SerializeField] private float mZtiltAngle;
 
+    [Header("Dash")]
+    [SerializeField] private GameObject VehicleDash;
+    [SerializeField] private GameObject UIDash;
+
+
+
     [Header("Tyre Skid")]
     [SerializeField] private bool bSkidOn = false;
     [SerializeField] private float mSkidWidth = 0.08f;
@@ -138,7 +145,9 @@ public class MotorCycleController : MonoBehaviour
         mRaceManager.onRaceFinished += RaceFinish;
 
     }
-
+    private void Start()
+    {
+    }
     private void GetSpecScript()
     {
 #if UNITY_EDITOR
@@ -186,11 +195,11 @@ public class MotorCycleController : MonoBehaviour
     }
 
 
+
     private void Update()
     {
         GetSpeed();
         SkidMark();
-        
     }
 
     private void FixedUpdate()
@@ -203,8 +212,13 @@ public class MotorCycleController : MonoBehaviour
     }
     private void LateUpdate()
     {
+
         mMotoUI.Speed(Speed);
         mMotoUI.BatteryPercentage(mBattery);
+        mMotoUI.OverTakeIndicator(bOverTakePower);
+        mMotoUI.PowerMeter(Mathf.Clamp01(mBrakeAccel), Mathf.Clamp(mBrakeAccel, -1, 0));
+        mMotoUI.RegenIndicator(bRegenBrake);
+
     }
     private void CheckVehicleStatsSet()
     {
@@ -336,11 +350,10 @@ public class MotorCycleController : MonoBehaviour
         float energyuse = Mathf.Max(0f, mBrakeAccel) * mEnergyUseIndex * speedfactor * Time.deltaTime;
         
         mBattery -= energyuse;
-        float regenenbrake = 0;
         if (bRegenBrake && (Speed > 5f || Speed < 5f))
         {
             float regen = mRegenStrength * speedfactor * Time.deltaTime;
-            regenenbrake = regen;
+
             mBrakeAccel = -0.2f;
             mBattery += regen;
             //Debug.Log($"Regen {regen}");
@@ -350,14 +363,13 @@ public class MotorCycleController : MonoBehaviour
             }
         }
 
-        mMotoUI.PowerMeter(energyuse, regenenbrake);
     }
 
     private float OverTakePower() 
     {
         if (!bOverTakePower || bRegenBrake || bIsBraking) return mEnergyUseIndex;
         float overtakePower = mOverTakePowerIndex;
-        mMotoUI.OverTakeIndicator(bOverTakePower);
+
         return overtakePower;
     }
 

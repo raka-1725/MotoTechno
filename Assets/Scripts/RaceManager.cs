@@ -44,12 +44,12 @@ public class RaceManager : MonoBehaviour
 
         currentLap = mLapChecker.currentLap;
 
-        if (currentLap == totalLap && !bFinalLap)
+        if (!bFinalLap && currentLap == totalLap)
         {
             FinalLap();
         }
 
-        if (bFinalLap && currentLap > totalLap && !bRaceFinished) 
+        if (!bRaceFinished && currentLap >= totalLap) 
         {
             FinishRace();
         }
@@ -65,7 +65,7 @@ public class RaceManager : MonoBehaviour
     {
         AwardPoints();
         bRaceFinished = true;
-        mFinishRaceUI.Finish();
+        mFinishRaceUI.Finish(this);
         onRaceFinished?.Invoke(this);
 
     }
@@ -87,41 +87,44 @@ public class RaceManager : MonoBehaviour
                 awardCredit = 10;
                 break;
             case 5:
-                awardCredit = 20;
-                break;
-            case 6:
-                awardCredit = 15;
-                break;
-            case 7:
-                awardCredit = 12;
-                break;
-            case 8:
-                awardCredit = 10;
-                break;
-            case 9:
                 awardCredit = 8;
                 break;
-            case 10:
+            case 6:
                 awardCredit = 6;
                 break;
-            case 11:
+            case 7:
                 awardCredit = 4;
                 break;
-            case 12:
+            case 8:
+                awardCredit = 3;
+                break;
+            case 9:
                 awardCredit = 2;
                 break;
-            case 13:
+            case 10:
                 awardCredit = 1;
+                break;
+            case 11:
+                awardCredit = 0;
+                break;
+            case 12:
+                awardCredit = 0;
+                break;
+            case 13:
+                awardCredit = 0;
                 break;
             case 14:
-                awardCredit = 1;
+                awardCredit = 0;
                 break;
             case 15:
-                awardCredit = 1;
+                awardCredit = 0;
                 break;
             default:
                 break;
         }
+
+        PlayerCredits.Instance.addMoney(awardCredit);
+        Debug.Log($"Player credit : {PlayerCredits.Instance.credit}");
     }
 
 

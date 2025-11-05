@@ -1,15 +1,13 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using Unity.VisualScripting;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class ShopMaster : MonoBehaviour
 {
     
     [Header("GeneratingSpec")]
     [SerializeField] MotorCycleCusomization mCustomSpec;
-    [SerializeField] MotorCycleController mDefautSpec;
+    [SerializeField] MotorCycleCusomization mDefaultSpec;
 
     [Header("CustomPriceSheet")]
     [SerializeField] CustomShopPrices mCustomPrices;
@@ -27,6 +25,16 @@ public class ShopMaster : MonoBehaviour
     [SerializeField] private GameObject mColor;
     [SerializeField] private GameObject mCustomize;
 
+    [SerializeField] private Button mDefaultSpecButton;
+
+    private void Awake()
+    {
+        foreach (StatusUpgrade mUpgrades in mUpgrades) 
+        {
+            mUpgrades.upgradePurchased += OnUpgradePurchased;
+        }
+        mUpgradeColorScript.upgradePurchased += OnUpgradeColorPurchased;
+    }
 
     private void Start()
     {
@@ -34,12 +42,38 @@ public class ShopMaster : MonoBehaviour
 
         SetUpgrades();
 
-        foreach (StatusUpgrade mUpgrades in mUpgrades) 
-        {
-            mUpgrades.upgradePurchased += OnUpgradePurchased;
-        }
-        mUpgradeColorScript.upgradePurchased += OnUpgradeColorPurchased;
+        mDefaultSpecButton.onClick.AddListener(ResetToDefault);
+        LoadPreviousSpec();
     }
+    private void Update()
+    {
+        
+        
+    }
+
+    private MotorCycleCusomization CloneSpec(MotorCycleCusomization original)
+    {
+        MotorCycleCusomization clone = ScriptableObject.CreateInstance<MotorCycleCusomization>();
+
+        clone.EnergyUseIndex = original.EnergyUseIndex;
+        clone.MaxPower = original.MaxPower;
+        clone.BrakeTorque = original.BrakeTorque;
+        clone.FrontWinglet = original.FrontWinglet;
+        clone.RearWing = original.RearWing;
+
+        clone.DefaultBodyColor = original.DefaultBodyColor;
+        clone.mDefaultBodyColor = original.mDefaultBodyColor;
+        clone.mCustomBodyColor = original.mCustomBodyColor;
+
+        clone.RearWingGripMultiplier = original.RearWingGripMultiplier;
+        clone.FrontWingletGripMultiplier = original.FrontWingletGripMultiplier;
+        clone.BatteryCapacity = original.BatteryCapacity;
+        clone.RegenStrength = original.RegenStrength;
+        clone.OverTakeIndex = original.OverTakeIndex;
+
+        return clone;
+    }
+
 
     private void OnUpgradeColorPurchased(StatusUpgradeColor color, bool defaultcolor, int priceToSubtract, Color customColor)
     {
@@ -49,12 +83,16 @@ public class ShopMaster : MonoBehaviour
 
         mDisplaySpec.DefaultBodyColor = defaultcolor;
         mDisplaySpec.mCustomBodyColor = customColor;
-        UnityEngine.Debug.Log(customColor);
         UpdateDisplayMoto();
     }
 
     private void UpdateDisplayMoto()
     {
+        mDisplaySpec.FrontWinglet = mCustomSpec.FrontWinglet;
+        mDisplaySpec.RearWing = mCustomSpec.RearWing;
+        mDisplaySpec.DefaultBodyColor = mCustomSpec.DefaultBodyColor;
+        mDisplaySpec.mDefaultBodyColor = mCustomSpec.mDefaultBodyColor;
+        mDisplaySpec.mCustomBodyColor = mCustomSpec.mCustomBodyColor;
         mMotoDisplay.SetActive(false);
         mMotoDisplay.SetActive(true);
     }
@@ -70,109 +108,76 @@ public class ShopMaster : MonoBehaviour
         switch (upgrade.NameOfComponent)
         {
             case "Battery":
-                switch (upgrade.currentLevel)
-                {
-                    case 1:
-                        mCustomSpec.EnergyUseIndex = 2;
-                        break;
-                    case 2:
-                        mCustomSpec.EnergyUseIndex = 1.7f;
-                        break;
-                    case 3:
-                        mCustomSpec.EnergyUseIndex = 1.4f;
-                        break;
-                    case 4:
-                        mCustomSpec.EnergyUseIndex = 1.2f;
-                        break;
-                    case 5:
-                        mCustomSpec.EnergyUseIndex = 1.0f;
-                        break;
-                    default:
-                        break;
-                }
+                mCustomSpec.EnergyUseIndex = GetEnergyIndex(upgrade.currentLevel);
+                mCustomSpec.OverTakeIndex = GetOverTakeIndex(upgrade.currentLevel);
                 break;
             case "Motor":
-                switch (upgrade.currentLevel)
-                {
-                    case 1:
-                        mCustomSpec.MaxPower = 5000;
-                        break;
-                    case 2:
-                        mCustomSpec.MaxPower = 5500;
-                        break;
-                    case 3:
-                        mCustomSpec.MaxPower = 7000;
-                        break;
-                    case 4:
-                        mCustomSpec.MaxPower = 8500;
-                        break;
-                    case 5:
-                        mCustomSpec.MaxPower = 10000;
-                        break;
-                    default:
-                        break;
-                }
+                mCustomSpec.MaxPower = GetMotorPower(upgrade.currentLevel);
+                mCustomSpec.RegenStrength = GetRegenStrength(upgrade.currentLevel);
                 break;
             case "Brake":
-                switch (upgrade.currentLevel)
-                {
-                    case 1:
-                        mCustomSpec.BrakeTorque = 500;
-                        break;
-                    case 2:
-                        mCustomSpec.BrakeTorque = 600;
-                        break;
-                    case 3:
-                        mCustomSpec.BrakeTorque = 700;
-                        break;
-                    case 4:
-                        mCustomSpec.BrakeTorque = 850;
-                        break;
-                    case 5:
-                        mCustomSpec.BrakeTorque = 1000;
-                        break;
-                    default:
-                        break;
-                }
+                mCustomSpec.BrakeTorque = GetBrakeTorque(upgrade.currentLevel);
                 break;
             case "Front Winglet":
-                switch (upgrade.currentLevel)
-                {
-                    case 0:
-                        mCustomSpec.FrontWinglet = false;
-                        mDisplaySpec.FrontWinglet = false;
-                        UpdateDisplayMoto();
-                        break;
-                    case 1:
-                        mCustomSpec.FrontWinglet = true;
-                        mDisplaySpec.FrontWinglet = true;
-                        UpdateDisplayMoto();
-                        break;
-                    default:
-                        break;
-                }
+                mCustomSpec.FrontWinglet = upgrade.currentLevel > 0;
+                mDisplaySpec.FrontWinglet = upgrade.currentLevel > 0;
+                UpdateDisplayMoto();
                 break;
             case "Rear Wing":
-                switch (upgrade.currentLevel)
-                {
-                    case 0:
-                        mCustomSpec.RearWing = false;
-                        mDisplaySpec.RearWing = false;
-                        UpdateDisplayMoto();
-                        break;
-                    case 1:
-                        mCustomSpec.RearWing = true;
-                        mDisplaySpec.RearWing = true;
-                        UpdateDisplayMoto();
-                        break;
-                    default:
-                        break;
-                }
-                break;
-            default:
+                mCustomSpec.RearWing = upgrade.currentLevel > 0;
+                mDisplaySpec.RearWing = upgrade.currentLevel > 0;
+                UpdateDisplayMoto();
                 break;
         }
     }
+    private float GetOverTakeIndex(int level) => level switch
+    {
+        1 => 1.1f,
+        2 => 1.3f,
+        3 => 1.4f,
+        4 => 1.6f,
+        5 => 1.8f,
+        _ => mDefaultSpec.OverTakeIndex,
+    };
+    private float GetRegenStrength(int level) => level switch
+    {
+        1 => 10,
+        2 => 20,
+        3 => 30,
+        4 => 40,
+        5 => 50,
+        _ => mDefaultSpec.RegenStrength
+    };
+
+    private int GetBrakeTorque(int level) => level switch
+    {
+        1 => 500,
+        2 => 600,
+        3 => 700,
+        4 => 850,
+        5 => 1000,
+        _ => mDefaultSpec.BrakeTorque
+    };
+
+    private int GetMotorPower(int level) => level switch
+    {
+        1 => 5000,
+        2 => 5500,
+        3 => 7000,
+        4 => 8500,
+        5 => 10000,
+        _ => mDefaultSpec.MaxPower
+    };
+
+    private float GetEnergyIndex(int level) => level switch
+    {
+        1 => 2f,
+        2 => 1.7f,
+        3 => 1.4f,
+        4 => 1.2f,
+        5 => 1.0f,
+        _ => mDefaultSpec.EnergyUseIndex
+    };
 
     public void SetUpgrades() 
     {
@@ -221,27 +226,21 @@ public class ShopMaster : MonoBehaviour
         }
     }
 
-    //Generating Spec inPROGRESS
+    private void ResetToDefault()
+    {
+        mCustomSpec = CloneSpec(mDefaultSpec);
+        UpdateDisplayMoto();  
+    }
 
     public void GenerateSpecSheet()
     {
-        //FIX THIS LATER
-
-        if (mCustomSpec == mDefautSpec) 
+        if (SpecIdentical(mDefaultSpec, mCustomSpec)) 
         {
             return;
         }
+        ApplyDefaultIfUnset(mCustomSpec, mDefaultSpec);
 
-        MotorCycleCusomization newSpec = ScriptableObject.CreateInstance<MotorCycleCusomization>();
-
-        newSpec.EnergyUseIndex = mCustomSpec.EnergyUseIndex;
-        newSpec.MaxPower = mCustomSpec.MaxPower;
-        newSpec.BrakeTorque = mCustomSpec.BrakeTorque;
-        newSpec.FrontWinglet = mCustomSpec.FrontWinglet;
-        newSpec.RearWing = mCustomSpec.RearWing;
-        newSpec.DefaultBodyColor = mCustomSpec.DefaultBodyColor;
-        newSpec.mCustomBodyColor = mCustomSpec.mCustomBodyColor;
-
+        MotorCycleCusomization finalSpec = CloneSpec(mCustomSpec);
 
         string assetPath = "Assets/GeneratedSpecs/";
         if (!System.IO.Directory.Exists(assetPath))
@@ -253,16 +252,85 @@ public class ShopMaster : MonoBehaviour
         //Unity Editor
 #if UNITY_EDITOR
         string fileName = $"MotorcycleSpec_{DateTime.Now:yyyyMMdd_HHmmss}.asset";
-        UnityEditor.AssetDatabase.CreateAsset(newSpec, assetPath + fileName);
+        UnityEditor.AssetDatabase.CreateAsset(finalSpec, assetPath + fileName);
         UnityEditor.AssetDatabase.SaveAssets();
         UnityEditor.AssetDatabase.Refresh();
 #endif
         string jsonPath = System.IO.Path.Combine(Application.persistentDataPath, "MotorcycleSpec.json");
-        string jsonData = JsonUtility.ToJson(newSpec, true);
+        string jsonData = JsonUtility.ToJson(finalSpec, true);
         System.IO.File.WriteAllText(jsonPath, jsonData);
     }
 
+    private void ApplyDefaultIfUnset(MotorCycleCusomization custom, MotorCycleCusomization defaults)
+    {
+        if (custom.EnergyUseIndex <= 0f)
+            custom.EnergyUseIndex = defaults.EnergyUseIndex;
+        if (custom.MaxPower <= 0)
+            custom.MaxPower = defaults.MaxPower;
+        if (custom.BrakeTorque <= 0)
+            custom.BrakeTorque = defaults.BrakeTorque;
+        if (!custom.FrontWinglet && !defaults.FrontWinglet)
+            custom.FrontWinglet = defaults.FrontWinglet;
+        if (!custom.RearWing && !defaults.RearWing)
+            custom.RearWing = defaults.RearWing;
 
+        if (custom.mCustomBodyColor == defaults.mCustomBodyColor)
+        {
+            custom.DefaultBodyColor = true;
+        }
+        else
+        {
+            custom.DefaultBodyColor = false;
+        }
+
+        custom.RearWingGripMultiplier = defaults.RearWingGripMultiplier;
+        custom.FrontWingletGripMultiplier = defaults.FrontWingletGripMultiplier;
+        custom.BatteryCapacity = defaults.BatteryCapacity;
+        custom.RegenStrength = defaults.RegenStrength;
+        custom.OverTakeIndex = defaults.OverTakeIndex;
+
+    }
+
+    private bool SpecIdentical(MotorCycleCusomization defaultspec, MotorCycleCusomization customs) 
+    {
+        return defaultspec.EnergyUseIndex == customs.EnergyUseIndex &&
+              defaultspec.MaxPower == customs.MaxPower &&
+              defaultspec.BrakeTorque == customs.BrakeTorque &&
+              defaultspec.FrontWinglet == customs.FrontWinglet &&
+              defaultspec.RearWing == customs.RearWing &&
+              defaultspec.DefaultBodyColor == customs.DefaultBodyColor &&
+              defaultspec.mCustomBodyColor == customs.mCustomBodyColor;
+    }
+    private void LoadPreviousSpec()
+    {
+        string jsonPath = System.IO.Path.Combine(Application.persistentDataPath, "MotorcycleSpec.json");
+        if (System.IO.File.Exists(jsonPath))
+        {
+            string jsonData = System.IO.File.ReadAllText(jsonPath);
+            MotorCycleCusomizationData savedData = JsonUtility.FromJson<MotorCycleCusomizationData>(jsonData);
+            if (savedData != null)
+            {
+                mCustomSpec = ScriptableObject.CreateInstance<MotorCycleCusomization>();
+                mCustomSpec.EnergyUseIndex = savedData.EnergyUseIndex;
+                mCustomSpec.MaxPower = savedData.MaxPower;
+                mCustomSpec.BrakeTorque = savedData.BrakeTorque;
+                mCustomSpec.FrontWinglet = savedData.FrontWinglet;
+                mCustomSpec.RearWing = savedData.RearWing;
+                mCustomSpec.DefaultBodyColor = savedData.DefaultBodyColor;
+                mCustomSpec.mCustomBodyColor = savedData.mCustomBodyColor;
+                mCustomSpec.RearWingGripMultiplier = savedData.RearWingGripMultiplier;
+                mCustomSpec.FrontWingletGripMultiplier = savedData.FrontWingletGripMultiplier;
+                mCustomSpec.BatteryCapacity = savedData.BatteryCapacity;
+                mCustomSpec.RegenStrength = savedData.RegenStrength;
+                mCustomSpec.OverTakeIndex = savedData.OverTakeIndex;
+            }
+        }
+        else
+        {
+            mCustomSpec = CloneSpec(mDefaultSpec);
+        }
+        UpdateDisplayMoto();
+    }
 
 
 }

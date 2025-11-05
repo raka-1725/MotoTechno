@@ -23,59 +23,74 @@ public class FinishRaceUI : MonoBehaviour
         mRaceManager = FindAnyObjectByType<RaceManager>();
         mFinishUI.SetActive(false);
     }
-    private void Update()
-    {
-        mPosition = mDisplayStats.mPosition;
-        mCreditAward = mRaceManager.awardCredit;
-    }
-    public void Finish()
+    public void Finish(RaceManager raceManager)
     {
         ResetUI();
-        StartCoroutine(ShowPosition(mPosition, mCreditAward));
+
+        mPosition = raceManager.position;
+        mCreditAward = raceManager.awardCredit;
+
+        Debug.Log($"pos {mPosition}, credit {mCreditAward}");
+
+        SetPositionText(mPosition);
+        mCreditAwardedText.text = $"{mCreditAward} credits awarded !!";
+
         mFinishUI.SetActive(true);
+        StartCoroutine(FadeInUI());
     }
 
-    private IEnumerator ShowPosition(int finalPos, int creditAwarded)
+    private void SetPositionText(int finalPos)
     {
+        switch (finalPos)
+        {
+            case 1: mPositionText.text = "1 st"; break;
+            case 2: mPositionText.text = "2 nd"; break;
+            case 3: mPositionText.text = "3 rd"; break;
+            default: mPositionText.text = $"{finalPos} th"; break;
+        }
+    }
+
+    private IEnumerator FadeInUI()
+    {
+        float elapsed = 0f;
         Color bgColor = mBGFinalPosition.color;
         bgColor.a = 0f;
         mBGFinalPosition.color = bgColor;
 
-        Color textColor = mPositionText.color;
-        mPositionText.color = textColor;
-
+        Color positionColor = mPositionText.color;
+        positionColor.a = 0f;
+        mPositionText.color = positionColor;
         mPositionText.gameObject.SetActive(true);
-        yield return new WaitForSeconds(1f);
-        textColor.a = 0f;
 
-        if (finalPos == 1) 
-        {
-            mPositionText.text = $"{finalPos} st";
-        }
-        else if (finalPos == 2)
-        {
-            mPositionText.text = $"{finalPos} nd";
-        }
-        else if (finalPos == 3)
-        {
-            mPositionText.text = $"{finalPos} rd";
-        }
-        else
-        {
-            mPositionText.text = $"{finalPos} th";
-        }
-        mPositionText.gameObject.SetActive(true);
+        Color creditColor = mCreditAwardedText.color;
+        creditColor.a = 0f;
+        mCreditAwardedText.color = creditColor;
         mCreditAwardedText.gameObject.SetActive(true);
-        mCreditAwardedText.SetText($"{mCreditAward} credits awarded !!");
-        float elapsed = 0f;
+
+        yield return new WaitForSeconds(0.5f);
+
         while (elapsed < fadeDuration)
         {
             elapsed += Time.deltaTime;
             float alpha = Mathf.Clamp01(elapsed / fadeDuration);
+
             bgColor.a = alpha;
             mBGFinalPosition.color = bgColor;
+
+            positionColor.a = alpha;
+            mPositionText.color = positionColor;
+
+            creditColor.a = alpha;
+            mCreditAwardedText.color = creditColor;
+
             yield return null;
         }
+        bgColor.a = 1f;
+        mBGFinalPosition.color = bgColor;
+        positionColor.a = 1f;
+        mPositionText.color = positionColor;
+        creditColor.a = 1f;
+        mCreditAwardedText.color = creditColor;
     }
     public void ResetUI()
     {
@@ -94,6 +109,14 @@ public class FinishRaceUI : MonoBehaviour
             textColor.a = 0f;
             mPositionText.color = textColor;
             mPositionText.gameObject.SetActive(false);
+        }
+
+        if (mCreditAwardedText != null)
+        {
+            Color creditColor = mCreditAwardedText.color;
+            creditColor.a = 0f;
+            mCreditAwardedText.color = creditColor;
+            mCreditAwardedText.gameObject.SetActive(false);
         }
     }
 }

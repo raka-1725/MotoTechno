@@ -7,7 +7,7 @@ public class CameraSwitcher : MonoBehaviour
     [SerializeField] private Camera mThirdPersonCam;
 
     [SerializeField] private Button mCamSwitchButton;
-    private bool bFPcam;
+    public bool bFPcam { get; private set; }
 
     private void Awake()
     {
