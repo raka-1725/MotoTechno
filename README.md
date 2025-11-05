@@ -40,7 +40,8 @@ NPC's are still in progress of development, therefore there is only solo mode as
 
 - ## NPC/AI
   - A NPC/AI trained by Machine Learning to give more competitiveness to the game.
-  - Customizable number of NPC per race 
+  - Customizable number of NPC per race
+  - AI V3 is in development, currently using V2 
 
 # Core-Classes
 ```MotorcycleController``` - A class that manages all the controll of the motorcycle including input and energy management of the motorcycle.
@@ -91,6 +92,8 @@ Game start/stop feature, race start feature, more data for Machine Learning Agen
 # Issues/Bugs
 
 - Position system is unstable (V1.0)
+- AI V2
+- AI V3 is in development
 ---
 
 # Credits
