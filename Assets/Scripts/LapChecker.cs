@@ -1,10 +1,13 @@
-using System.Diagnostics;
-using System.Threading;
 using UnityEngine;
 
 public class LapChecker : MonoBehaviour
 {
+    DisplayRaceStats mDisplayRaceStats;
+    CountDownStart mCountDownStart;
     [SerializeField] private GameObject[] mCheckPoints;
+
+    public bool bStopTimer = true;
+
     [Header("CurrentLap/Sector")]
     public int currentLap = 0;
     public int currentSector = 0;
@@ -13,32 +16,52 @@ public class LapChecker : MonoBehaviour
     [SerializeField] private float LapTime;
     [SerializeField] private float SectorTime;
 
-    [SerializeField] private int mCurrentcheckPoint;
+    [SerializeField] private int mCurrentcheckPoint = -1;
 
-    public void PassCheckPoint(int checkpointindex) 
+    private void Awake()
     {
-        if (checkpointindex > mCheckPoints.Length) 
+        mCheckPoints = GameObject.FindGameObjectsWithTag("SectorCheckpoints");
+        mDisplayRaceStats = FindAnyObjectByType<DisplayRaceStats>();
+        mCountDownStart = FindAnyObjectByType<CountDownStart>();
+        foreach (GameObject checkpoints in mCheckPoints) 
+        {
+            Checkpoint checkpoint = checkpoints.GetComponent<Checkpoint>();
+            checkpoint.SetLapChecker();
+        }
+        mCountDownStart.onRaceStart += RaceStart;
+    }
+    private void RaceStart(CountDownStart sender) 
+    {
+        bStopTimer = false;
+    }
+    public void PassCheckPoint(int checkpointIndex) 
+    {
+        if (mCurrentcheckPoint == -1 && checkpointIndex == 0)
         {
             mCurrentcheckPoint = 0;
-
+            currentSector = 1;
+            LapTime = 0f;
+            return;
         }
-        mCurrentcheckPoint++;
-        currentSector++;
-
-        if (mCurrentcheckPoint > 3) 
+        if (checkpointIndex == (mCurrentcheckPoint + 1) % mCheckPoints.Length)
         {
-            mCurrentcheckPoint = 1;
-            currentSector = 0;
-            NewLap();
+            mCurrentcheckPoint = checkpointIndex;
+            currentSector++; currentSector = 1;
+            SectorTime = UpdateSectorTime();
+
+            if (checkpointIndex == 0) 
+            {
+                mDisplayRaceStats.UpdateLapUI(currentLap + 1, LapTime);
+                NewLap();
+            }
         }
-        SectorTime = UpdateSectorTime();
-
-
     }
 
     private void Update()
     {
         LapTimer();
+        mDisplayRaceStats.UpdateLapTimeUI(LapTime);
+        mDisplayRaceStats.UpdateSetcorUI(SectorTime);
     }
 
     private float UpdateSectorTime() 
@@ -52,7 +75,10 @@ public class LapChecker : MonoBehaviour
 
     private void LapTimer() 
     {
-        LapTime += Time.deltaTime;
+        if (!bStopTimer) 
+        {
+            LapTime += Time.deltaTime;
+        }
     }
 
     private void NewLap() 

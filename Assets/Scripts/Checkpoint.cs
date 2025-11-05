@@ -5,9 +5,9 @@ public class Checkpoint : MonoBehaviour
     private LapChecker mLapChecker;
     public int CheckPointIndex;
 
-    private void Awake()
+    public void SetLapChecker() 
     {
-         mLapChecker = FindAnyObjectByType<LapChecker>();
+        mLapChecker = GameObject.FindGameObjectWithTag("PlayerMotorCycle").GetComponent<LapChecker>();
     }
     private void OnTriggerEnter(Collider other)
     {

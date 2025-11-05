@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
@@ -10,12 +12,16 @@ public class MotorCycleController : MonoBehaviour
     MotorCycleInputAction mInputAction;
     TrailRenderer mSkidMarks;
     MotorCycleUI mMotoUI;
+    CountDownStart mCountDownStart;
+    NPC_Path mNPC_path;
+    RaceManager mRaceManager;
 
     private Vector2 mMoveInput;
     private float mHorizontalSteer; //horizontal input
     [SerializeField] private float mBrakeAccel; //vertical input
     [SerializeField] private float mCurrentSteerAngle;
     private float mCurrentBrakeForce;
+    private bool bCanDrive = false;
 
     private Rigidbody rb;
 
@@ -78,6 +84,11 @@ public class MotorCycleController : MonoBehaviour
     [Header("WheelRotation")]
     [SerializeField] private Transform mFrontWheelTransform;
     [SerializeField] private Transform mRearWheelTransform;
+    private float stuckTimer;
+
+
+    private Vector3 lastRespawnPosition;
+    private Quaternion lastRespawnRotation;
 
     private void Awake()
     {
@@ -89,6 +100,9 @@ public class MotorCycleController : MonoBehaviour
         mInputAction.MotorCycle.MotoOverTake.performed += OnOverTakeInput;
         mInputAction.MotorCycle.MotoOverTake.canceled += OnOverTakeInputRelease;
         rb = GetComponent<Rigidbody>();
+        mCountDownStart = FindAnyObjectByType<CountDownStart>();
+
+        GetSpecScript();
 
         //visual
         if (bSkidOn) 
@@ -112,6 +126,63 @@ public class MotorCycleController : MonoBehaviour
         //UI
         mMotoUI = GetComponent<MotorCycleUI>();
 
+
+        //Start
+        mCountDownStart.onRaceStart += RaceStart;
+
+        //Respawn
+        mNPC_path = FindAnyObjectByType<NPC_Path>();
+
+        //Finish
+        mRaceManager = FindAnyObjectByType<RaceManager>();
+        mRaceManager.onRaceFinished += RaceFinish;
+
+    }
+
+    private void GetSpecScript()
+    {
+#if UNITY_EDITOR
+        string[] guids = AssetDatabase.FindAssets("t:MotorCycleCusomization", new[] { "Assets/GeneratedSpecs" });
+        string newestPath = null;
+        DateTime newestTime = DateTime.MinValue;
+
+        foreach (string guid in guids)
+        {
+            string path = AssetDatabase.GUIDToAssetPath(guid);
+            DateTime modified = System.IO.File.GetLastWriteTime(path);
+            if (modified > newestTime)
+            {
+                newestTime = modified;
+                newestPath = path;
+            }
+        }
+
+        if (!string.IsNullOrEmpty(newestPath))
+        {
+            mMotoSpecCustom = AssetDatabase.LoadAssetAtPath<MotorCycleCusomization>(newestPath);
+
+        }
+
+
+#else
+    string jsonPath = System.IO.Path.Combine(Application.persistentDataPath, "MotorcycleSpec.json");
+    if (System.IO.File.Exists(jsonPath))
+    {
+        string json = System.IO.File.ReadAllText(jsonPath);
+        mMotoSpecCustom = ScriptableObject.CreateInstance<MotorCycleCusomization>();
+        JsonUtility.FromJsonOverwrite(json, mMotoSpecCustom);
+    }
+#endif
+    }
+
+    private void RaceFinish(RaceManager manager)
+    {
+        bCanDrive = false;
+    }
+
+    private void RaceStart(CountDownStart sender) 
+    {
+        bCanDrive = true;
     }
 
 
@@ -128,6 +199,7 @@ public class MotorCycleController : MonoBehaviour
         HandleSteer();
         RotateTire();
         BodyTilt();
+        CheckStuck();
     }
     private void LateUpdate()
     {
@@ -201,6 +273,13 @@ public class MotorCycleController : MonoBehaviour
     }
     private void HandleMotor()
     {
+        if (!bCanDrive)
+        {
+            mWColliderFront.motorTorque = 0f;
+            mWColliderRear.motorTorque = 0f;
+            mWColliderFront.brakeTorque = 100f;
+            return;
+        }
         mBrakeAccel = (mMoveInput.y);
         if (mBrakeAccel >= 0) { bIsBraking = false; }
         if (mBrakeAccel < 0) { bIsBraking = true; }
@@ -213,7 +292,7 @@ public class MotorCycleController : MonoBehaviour
         //Energy system
         EnergyUse(speedfactor);
 
-        Debug.Log($"MotorInput : {-(mBrakeAccel * motorTorque)}, Brake : {mCurrentBrakeForce}");
+        ///Debug.Log($"MotorInput : {-(mBrakeAccel * motorTorque)}, Brake : {mCurrentBrakeForce}");
 
         if (!bIsBraking && Speed > 0)
         {
@@ -257,10 +336,12 @@ public class MotorCycleController : MonoBehaviour
         float energyuse = Mathf.Max(0f, mBrakeAccel) * mEnergyUseIndex * speedfactor * Time.deltaTime;
         
         mBattery -= energyuse;
+        float regenenbrake = 0;
         if (bRegenBrake && (Speed > 5f || Speed < 5f))
         {
-            mBrakeAccel = -0.2f;
             float regen = mRegenStrength * speedfactor * Time.deltaTime;
+            regenenbrake = regen;
+            mBrakeAccel = -0.2f;
             mBattery += regen;
             //Debug.Log($"Regen {regen}");
             if (bRegenBrake && Speed < 5f)
@@ -268,12 +349,15 @@ public class MotorCycleController : MonoBehaviour
                 mBrakeAccel = 0;
             }
         }
+
+        mMotoUI.PowerMeter(energyuse, regenenbrake);
     }
 
     private float OverTakePower() 
     {
         if (!bOverTakePower || bRegenBrake || bIsBraking) return mEnergyUseIndex;
         float overtakePower = mOverTakePowerIndex;
+        mMotoUI.OverTakeIndicator(bOverTakePower);
         return overtakePower;
     }
 
@@ -338,6 +422,58 @@ public class MotorCycleController : MonoBehaviour
         if (Speed > mMinSkidSpeed) { mSkidMarks.emitting = true; }
         else { mSkidMarks.emitting = false; }
     }
+
+    private void CheckStuck()
+    {
+        if (Speed < 1f)
+        {
+            stuckTimer += Time.fixedDeltaTime;
+        }
+        else
+        {
+            stuckTimer = 0f;
+
+            UpdateRespawnPoint();
+        }
+
+        if (stuckTimer > 10f)
+        {
+            RespawnAtLastPosition();
+        }
+    }
+
+    private void UpdateRespawnPoint()
+    {
+        Transform closestPoint = mNPC_path.waypoints[0];
+        float closestDistance = Vector3.Distance(transform.position, closestPoint.position);
+
+        foreach (Transform point in mNPC_path.waypoints)
+        {
+            float distance = Vector3.Distance(transform.position, point.position);
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestPoint = point;
+            }
+        }
+
+        lastRespawnPosition = closestPoint.position;
+        lastRespawnRotation = closestPoint.rotation;
+    }
+
+    private void RespawnAtLastPosition()
+    {
+
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        transform.position = lastRespawnPosition;
+        transform.rotation = lastRespawnRotation;
+        rb.AddForce(transform.forward * 5f, ForceMode.VelocityChange);
+
+        stuckTimer = 0f;
+    }
+
+
     private void OnEnable()
     {
         mInputAction.Enable();

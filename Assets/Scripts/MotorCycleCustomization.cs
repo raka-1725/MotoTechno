@@ -3,7 +3,7 @@ using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 
-[CreateAssetMenu(fileName = "MotorCycleCusomize", menuName = "ScriptableObjects")  ]
+[CreateAssetMenu(fileName = "MotorCycleCusomize", menuName = "ScriptableObject_motorcycle")  ]
 public class MotorCycleCusomization : ScriptableObject
 {
     //[SerializeField] private GameObject mMotorCyclePrefab;
@@ -35,6 +35,7 @@ public class MotorCycleCusomization : ScriptableObject
     public bool RearWing;
     public bool FrontWinglet;
     public bool DefaultBodyColor;
+    public bool RandomBodyColor;
     public Color mDefaultBodyColor;
     public Color mCustomBodyColor;
 

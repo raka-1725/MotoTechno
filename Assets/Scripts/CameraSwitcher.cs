@@ -11,6 +11,7 @@ public class CameraSwitcher : MonoBehaviour
 
     private void Awake()
     {
+        mCamSwitchButton = FindAnyObjectByType<Button>();
         mCamSwitchButton.onClick.AddListener(SwitchCam);
     }
 

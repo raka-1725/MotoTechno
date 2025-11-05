@@ -6,6 +6,13 @@ TagManager:
   tags:
   - Mirror
   - PlayerMotorCycle
+  - Checkpoint
+  - Walls
+  - Grass
+  - DirtyTarmac
+  - Gravel
+  - StartGrid
+  - SectorCheckpoints
   layers:
   - Default
   - TransparentFX
@@ -14,7 +21,7 @@ TagManager:
   - Water
   - UI
   - 
-  - 
+  - NPC_wall
   - 
   - 
   - 

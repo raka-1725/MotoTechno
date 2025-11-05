@@ -1,0 +1,22 @@
+TODO: 
+
+FIX 
+laptimer start
+Position
+Lap display
+
+
+
+-10/25
+
+
+IDEA:
+
+
+Maybe respawning point on sector 2??????
+
+
+
+
+
+Player respawn at the last checkpoint if they are in the gravel for moret than 5 sec
