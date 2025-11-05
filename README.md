@@ -89,8 +89,8 @@ Game start/stop feature, race start feature, more data for Machine Learning Agen
 ---
 
 # Issues/Bugs
-No bugs yet
 
+- Position system is unstable (V1.0)
 ---
 
 # Credits
